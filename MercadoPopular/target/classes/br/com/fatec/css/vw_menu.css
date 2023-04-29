@@ -3,5 +3,17 @@
  */
 
 .mainFxmlClass {
+    -fx-background-color: #fff;
+}
 
+.hbox{
+    -fx-background-color: #fff;
+}
+
+.menu {
+    -fx-background-color: #fff;
+}
+.menu:hover {
+    -fx-background-color: #FFCC00;
+    -fx-border-width: 0 0 3px 0;
 }

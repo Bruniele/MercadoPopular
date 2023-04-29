@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +10,88 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.Controller.VW_MenuController">
-    <stylesheets>
-        <URL value="@/br/com/fatec/css/vw_menu.css"/>
-    </stylesheets>
-</AnchorPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.Controller.VW_MenuController">
+   <children>
+      <BorderPane prefHeight="707.0" prefWidth="1250.0">
+         <bottom>
+            <HBox prefHeight="299.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="321.0" fitWidth="250.0" pickOnBounds="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@image/menuOferta01.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="321.0" fitWidth="250.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/menuOferta02.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="321.0" fitWidth="250.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/menuOferta03.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="321.0" fitWidth="250.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/menuOferta04.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="321.0" fitWidth="250.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/menuOferta05.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <HBox prefHeight="309.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="327.0" fitWidth="1251.0" pickOnBounds="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@image/menuBanner.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </HBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="39.0" prefWidth="1250.0" styleClass="hbox" stylesheets="@css/vw_menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="154.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/mercadoPopular.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnCliente" alignment="CENTER" mnemonicParsing="false" onAction="#btnCliente_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Cliente">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnProduto" alignment="CENTER" mnemonicParsing="false" onAction="#btnProduto_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Produto">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnFornecedor" alignment="CENTER" mnemonicParsing="false" onAction="#btnFornecedor_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Fornecedor">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnPesquisar" alignment="CENTER" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Pesquisar">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>
