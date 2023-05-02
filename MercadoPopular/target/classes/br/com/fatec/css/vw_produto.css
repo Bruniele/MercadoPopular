@@ -3,5 +3,43 @@
  */
 
 .mainFxmlClass {
+    -fx-background-color:#FFF;
+}
 
+.botao{
+    -fx-background-color: #FFCC00;
+    -fx-text-fill: #000;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 3);
+    -fx-background-radius: 3px;
+}
+
+.botao:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #000;
+    -fx-border-color: #FFCC00;
+    -fx-border-width: 1px;
+    -fx-border-style: solid; 
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.0), 0, 0, 0, 0);
+}
+
+.botao:pressed{
+    -fx-background-color: #FFCC00;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #000;
+    -fx-border-color: #FFCC00;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.0), 0, 0, 0, 0);
+}
+
+.comboBox{
+    -fx-background-color: #FFF;
+    -fx-border-color: #FFCC00;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 3px;
+    -fx-font-family: Ebrima;
 }
