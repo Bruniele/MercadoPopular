@@ -1,24 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package br.com.fatec;
 
+import java.io.IOException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import javafx.scene.image.Image;
-
 /**
- * JavaFX App
+ *
+ * @author bruni
  */
-public class App extends Application {
+public class Fornecedor extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("VW_Menu"));
+        scene = new Scene(loadFXML("VW_Fornecedor"));
         
         //Definindo o ícone na scene(cena)
         Image aplicationIcon = new Image(getClass().getResourceAsStream("/br/com/fatec/image/mercadoPopular.png"));
@@ -27,7 +32,7 @@ public class App extends Application {
         //Não deixa maximizar a tela
         stage.setResizable(false);
         
-        stage.setTitle("Mercado Popular");
+        stage.setTitle("Fornecedor");
         
         stage.setScene(scene);
         stage.show();
