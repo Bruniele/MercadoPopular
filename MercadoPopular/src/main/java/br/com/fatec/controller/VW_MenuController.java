@@ -36,7 +36,6 @@ public class VW_MenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         btnCliente.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuCliente.png"));
         btnProduto.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuProduto.png"));
         btnFornecedor.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuFornecedor.png"));
@@ -88,6 +87,16 @@ public class VW_MenuController implements Initializable {
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
+        Estoque open = new Estoque();
+        try {
+            open.start(new Stage());
+            Stage stage = (Stage) btnPesquisar.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!!");
+            alert.setContentText("Erro ao encontrar a pagina");
+        }
     }
     
 }
