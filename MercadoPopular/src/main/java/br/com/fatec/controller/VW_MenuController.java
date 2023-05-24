@@ -45,6 +45,16 @@ public class VW_MenuController implements Initializable {
 
     @FXML
     private void btnCliente_Click(ActionEvent event) {
+        Cliente open = new Cliente();
+        try {
+            open.start(new Stage());
+            Stage stage = (Stage) btnCliente.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!!");
+            alert.setContentText("Erro ao encontrar a pagina");
+        }
     }
 
     @FXML

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="372.0" prefWidth="704.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.fatec.controller.VW_ClienteController">
+    <stylesheets>
+        <URL value="@/br/com/fatec/css/vw_cliente.css" />
+    </stylesheets>
+    <children>
+      <Text layoutX="289.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente">
+         <font>
+            <Font name="Ebrima Bold" size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnVoltar" focusTraversable="false" layoutX="18.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnVoltar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_cliente.css" text="Voltar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtNome" focusTraversable="false" layoutX="352.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="327.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="352.0" AnchorPane.rightAnchor="25.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" focusTraversable="false" layoutX="18.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="664.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="22.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="85.0" fitWidth="151.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true">
+         <image>
+            <Image url="@image/mercadoPopular.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnInserir" focusTraversable="false" layoutX="19.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnInserir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_cliente.css" text="Inserir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExcluir" focusTraversable="false" layoutX="192.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnExcluir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_cliente.css" text="Excluir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAlterar" focusTraversable="false" layoutX="365.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAlterar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_cliente.css" text="Alterar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPesquisar" focusTraversable="false" layoutX="536.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_cliente.css" text="Pesquisar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtCpf" focusTraversable="false" layoutX="20.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="306.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTelefone" focusTraversable="false" layoutX="352.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="327.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="352.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCodigoCliente" focusTraversable="false" layoutX="20.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="306.0" promptText="Código do Cliente" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
