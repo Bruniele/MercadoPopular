@@ -32,6 +32,8 @@ public class Produto extends Application {
         //Não deixa maximizar a tela
         stage.setResizable(false);
         
+        stage.setTitle("Produto");
+        
         stage.setScene(scene);
         stage.show();
     }

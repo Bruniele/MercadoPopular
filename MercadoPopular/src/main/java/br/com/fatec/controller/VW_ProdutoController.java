@@ -4,15 +4,18 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.Menu;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,6 +46,10 @@ public class VW_ProdutoController implements Initializable {
     private Button btnAlterar;
     @FXML
     private Button btnPesquisar;
+    @FXML
+    private TextField txtCodigoFornecedor;
+    @FXML
+    private TextField txtCodigoCategoria;
 
 
     /**
@@ -50,7 +57,6 @@ public class VW_ProdutoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
@@ -60,6 +66,17 @@ public class VW_ProdutoController implements Initializable {
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
+        Menu open = new Menu();
+        try {
+            open.start(new Stage());
+            Stage stage = (Stage) btnVoltar.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!!");
+            alert.setContentText("Erro ao encontrar a pagina");
+            alert.show();
+        }
     }
 
     @FXML
