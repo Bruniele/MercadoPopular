@@ -29,7 +29,7 @@ public class VW_MenuController implements Initializable {
     @FXML
     private Button btnFornecedor;
     @FXML
-    private Button btnPesquisar;
+    private Button btnEstoque;
 
     /**
      * Initializes the controller class.
@@ -39,7 +39,7 @@ public class VW_MenuController implements Initializable {
         btnCliente.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuCliente.png"));
         btnProduto.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuProduto.png"));
         btnFornecedor.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuFornecedor.png"));
-        btnPesquisar.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuPesquisar.png"));
+        btnEstoque.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuEstoque.png"));
     }    
 
     @FXML
@@ -86,11 +86,11 @@ public class VW_MenuController implements Initializable {
     }
 
     @FXML
-    private void btnPesquisar_Click(ActionEvent event) {
+    private void btnEstoque_Click(ActionEvent event) {
         Estoque open = new Estoque();
         try {
             open.start(new Stage());
-            Stage stage = (Stage) btnPesquisar.getScene().getWindow();
+            Stage stage = (Stage) btnEstoque.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
