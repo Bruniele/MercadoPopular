@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -43,6 +44,8 @@ public class VW_ClienteController implements Initializable {
     private TextField txtTelefone;
     @FXML
     private TextField txtCodigoCliente;
+    @FXML
+    private ComboBox<?> cbxCliente;
 
     /**
      * Initializes the controller class.
