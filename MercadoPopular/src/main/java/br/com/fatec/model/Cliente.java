@@ -11,6 +11,7 @@ package br.com.fatec.model;
 public class Cliente {
     private int codigoCliente;
     private String nome;
+    private int idade;
     private String cpf;
     private String telefone;
     private String email;
@@ -18,9 +19,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int codigoCliente, String nome, String cpf, String telefone, String email) {
+    public Cliente(int codigoCliente, String nome, int idade, String cpf, String telefone, String email) {
         this.codigoCliente = codigoCliente;
         this.nome = nome;
+        this.idade = idade;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
@@ -68,6 +70,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public String getCpf() {

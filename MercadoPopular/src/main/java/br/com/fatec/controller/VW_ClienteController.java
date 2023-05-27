@@ -50,6 +50,10 @@ public class VW_ClienteController implements Initializable {
     private TextField txtCodigoCliente;
     @FXML
     private ComboBox<Cliente> cbxCliente;
+    @FXML
+    private Button btnLimpar;
+    @FXML
+    private TextField txtIdade;
     
     //Variáveis auxiliares
     //Coleção que conterá os dados para serem exibidos dentro
@@ -63,6 +67,7 @@ public class VW_ClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
+        btnLimpar.setGraphic(new ImageView("/br/com/fatec/icons/iconeLimpar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
@@ -71,9 +76,9 @@ public class VW_ClienteController implements Initializable {
         //colocar a coleção dentro da comboBox
         cbxCliente.setItems(clientes);
         
-        clientes.add(new Cliente(1, "Maria Teixeira de Souza", "11987564352", 
+        clientes.add(new Cliente(1, "Maria Teixeira de Souza", 40, "11987564352", 
             "54672178094", "mariateixeira@gmail.com"));
-        clientes.add(new Cliente(2, "João Siqueira Matos", "11987542318", 
+        clientes.add(new Cliente(2, "João Siqueira Matos", 55, "11987542318", 
             "25670098341", "joaosiqueiramatos@gmail.com"));
         
         //Programa o evento de seleção na comboBox
@@ -101,6 +106,11 @@ public class VW_ClienteController implements Initializable {
             alert.show();
         }
     }
+    
+    @FXML
+    private void btnLimpar_Click(ActionEvent event) {
+        limpaCampos();
+    }
 
     @FXML
     private void btnInserir_Click(ActionEvent event) {
@@ -120,13 +130,19 @@ public class VW_ClienteController implements Initializable {
         
         //Limpa os campos
         limpaCampos();
-        //Manda o cursor para o campo do código do cliente
-        txtCodigoCliente.requestFocus();
+        //Manda o cursor para a comboBox
+        cbxCliente.requestFocus();
+        
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Sucesso");
+            alerta.setHeaderText("Cliente cadastrado com sucesso!");
+            alerta.showAndWait();
     }
     
     private void limpaCampos() {
         txtCodigoCliente.clear();
         txtNome.clear();
+        txtIdade.clear();
         txtCpf.clear();
         txtTelefone.clear();
         txtEmail.clear();
@@ -152,6 +168,7 @@ public class VW_ClienteController implements Initializable {
         Cliente c = new Cliente();
         c.setCodigoCliente(Integer.parseInt(txtCodigoCliente.getText()));
         c.setNome(txtNome.getText());
+        c.setIdade(Integer.parseInt(txtIdade.getText()));
         c.setCpf(txtCpf.getText());
         c.setTelefone(txtTelefone.getText());
         c.setEmail(txtEmail.getText());
@@ -167,6 +184,7 @@ public class VW_ClienteController implements Initializable {
     private void moveDadosModelTela(Cliente c) {
         txtCodigoCliente.setText(Integer.toString(c.getCodigoCliente()));
         txtNome.setText(c.getNome());
+        txtIdade.setText(Integer.toString(c.getIdade()));
         txtCpf.setText(c.getCpf());
         txtTelefone.setText(c.getTelefone());
         txtEmail.setText(c.getEmail());
