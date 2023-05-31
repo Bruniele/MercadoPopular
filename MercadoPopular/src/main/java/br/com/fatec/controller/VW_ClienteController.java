@@ -167,6 +167,34 @@ public class VW_ClienteController implements Initializable {
 
     @FXML
     private void btnExcluir_Click(ActionEvent event) {
+        //Verifica se a comboBox esta vazia
+        if(cbxCliente.getSelectionModel().getSelectedItem() == null){
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Escolha um cliente para excluir!");
+            alerta.showAndWait();
+            return;
+        }
+        
+        Cliente c = moveDadosTelaModel();
+        //Para contains funcionar o equals() e hashCode()
+        //precisam ser programados em Cliente
+        if(clientes.contains(c)) {
+            clientes.remove(c);
+            limpaCampos();
+            //Manda o cursor para a comboBox
+            cbxCliente.requestFocus();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Sucesso");
+            alerta.setHeaderText("Cliente removido com sucesso!");
+            alerta.showAndWait();
+            
+        }else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Não foi possivel excluir o Cliente");
+            alerta.showAndWait();
+        }
     }
 
     @FXML
