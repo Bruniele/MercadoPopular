@@ -1,2 +1,12 @@
+br\com\fatec\Controller\VW_ClienteController.class
+br\com\fatec\Controller\VW_EstoqueController.class
+br\com\fatec\DAO\DAO.class
 br\com\fatec\App.class
 br\com\fatec\Controller\VW_MenuController.class
+br\com\fatec\Estoque.class
+br\com\fatec\persistencia\Banco.class
+br\com\fatec\model\Cliente.class
+br\com\fatec\Cliente.class
+br\com\fatec\Menu.class
+br\com\fatec\Controller\VW_FornecedorController.class
+br\com\fatec\Fornecedor.class
