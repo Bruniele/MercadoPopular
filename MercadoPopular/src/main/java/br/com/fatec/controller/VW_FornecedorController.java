@@ -4,8 +4,12 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.DAO.FornecedorDAO;
+import br.com.fatec.Formatter.TextFieldFormatter;
 import br.com.fatec.Menu;
+import br.com.fatec.model.Fornecedor;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -36,6 +41,12 @@ public class VW_FornecedorController implements Initializable {
     @FXML
     private TextField txtCodigoFornecedor;
     @FXML
+    private TextField txtNumero;
+    @FXML
+    private TextField txtCep;
+    
+
+    @FXML
     private Button btnInserir;
     @FXML
     private Button btnExcluir;
@@ -43,14 +54,12 @@ public class VW_FornecedorController implements Initializable {
     private Button btnAlterar;
     @FXML
     private Button btnPesquisar;
-    @FXML
-    private TextField txtCep;
-    @FXML
-    private TextField txtNumero;
-
     /**
      * Initializes the controller class.
      */
+    
+    FornecedorDAO fornecedorDAO = new FornecedorDAO();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
@@ -58,7 +67,8 @@ public class VW_FornecedorController implements Initializable {
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
         btnPesquisar.setGraphic(new ImageView("/br/com/fatec/icons/iconePesquisar.png"));
-    }    
+
+    }
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
@@ -76,11 +86,44 @@ public class VW_FornecedorController implements Initializable {
     }
 
     @FXML
-    private void btnInserir_Click(ActionEvent event) {
+    private void btnInserir_Click(ActionEvent event) throws SQLException {
+        Integer codFornecedor = Integer.parseInt(txtCodigoFornecedor.getText());
+        String nomeFornecedor = txtNomeFornecedor.getText();
+        String endereco = txtEndereco.getText();
+        String email = txtEmail.getText();
+        String telefone = txtTelefone.getText();
+        String numero = txtNumero.getText();
+//        Integer numero = Integer.parseInt(txtNumero.getText
+        String cep = txtCep.getText();
+        
+        Fornecedor fornecedor = new Fornecedor();
+        
+        
+        fornecedor.setCodigoFornecedor(codFornecedor);
+        fornecedor.setNomeFornecedor(nomeFornecedor);
+        fornecedor.setEndereco(endereco);
+        fornecedor.setEmail(email);
+        fornecedor.setTelefone(telefone);
+        fornecedor.setNumero(numero);
+        fornecedor.setCep(cep);
+        
+        fornecedorDAO.insere(fornecedor);
+        
+        
+        txtCodigoFornecedor.clear();
+        txtNomeFornecedor.clear();
+        txtEndereco.clear();
+        txtEmail.clear();
+        txtTelefone.clear();
+        txtTelefone.clear();
+        txtNumero.clear();
+        txtCep.clear();
+     
+
     }
 
     @FXML
-    private void btnExcluir_Click(ActionEvent event) {
+    private void btnExcluir_Click(ActionEvent event) {  
     }
 
     @FXML
@@ -90,5 +133,34 @@ public class VW_FornecedorController implements Initializable {
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
     }
-    
+
+
+
+    @FXML
+    private void onCelularKeyReleased(KeyEvent event) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("(##)#####-####");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(txtTelefone);
+        tff.formatter();
+    }
+
+    @FXML
+    private void onNumeroKeyReased(KeyEvent event) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("######");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(txtNumero);
+        tff.formatter();
+    }
+
+    @FXML
+    private void onCepKeyReleased(KeyEvent event) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("#####-####");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(txtCep);
+        tff.formatter();
+    }
+
 }

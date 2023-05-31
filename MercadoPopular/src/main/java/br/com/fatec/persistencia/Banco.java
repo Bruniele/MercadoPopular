@@ -43,12 +43,12 @@ public class Banco {
     //métodos
     public static void conectar() throws SQLException {
         //mysql workbench
-        //String url = "jdbc:mysql://" + servidor +
-                    //":" + porta + "/" + bancoDados;
+        String url = "jdbc:mysql://" + servidor +
+                     ":" + porta + "/" + bancoDados;
 
         //MariaDB xampp
-        String url = "jdbc:mariadb://" + servidor +
-                     ":" + porta + "/" + bancoDados;
+        //String url = "jdbc:mariadb://" + servidor +
+        //             ":" + porta + "/" + bancoDados;
         
         //sqlServer
         //String url = "jdbc:sqlserver://" + servidor

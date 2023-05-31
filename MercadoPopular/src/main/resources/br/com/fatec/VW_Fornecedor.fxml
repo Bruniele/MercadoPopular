@@ -48,7 +48,7 @@
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTelefone" focusTraversable="false" layoutX="369.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="325.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="19.0">
+      <TextField fx:id="txtTelefone" focusTraversable="false" layoutX="369.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="325.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="19.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -106,12 +106,12 @@
             </Button>
          </children>
       </HBox>
-      <TextField fx:id="txtCep" focusTraversable="false" layoutX="369.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtCep" focusTraversable="false" layoutX="369.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCepKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="Cep" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNumero" focusTraversable="false" layoutX="22.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="325.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtNumero" focusTraversable="false" layoutX="22.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onNumeroKeyReased" prefHeight="40.0" prefWidth="325.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
