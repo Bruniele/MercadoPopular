@@ -88,6 +88,7 @@ public class VW_ClienteController implements Initializable {
     
     private void eventoChangeValueCombo() {
         cbxCliente.valueProperty().addListener((ov, velho, novo) -> {
+            if(novo == null) return;
             moveDadosModelTela(novo);
         });
     }   
@@ -114,29 +115,41 @@ public class VW_ClienteController implements Initializable {
 
     @FXML
     private void btnInserir_Click(ActionEvent event) {
+        //Verifica se os TextFields estão vazios
+        if(txtCodigoCliente.getLength() == 0 || txtNome.getLength() == 0 
+                || txtIdade.getLength() == 0 || txtCpf.getLength() == 0 
+                || txtTelefone.getLength() == 0 || txtEmail.getLength() == 0){
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Preencha todos os campos!");
+            alerta.showAndWait();
+            return;
+        }
+        
         Cliente c = moveDadosTelaModel();
         
         //Para contains funcionar o equals() e hashCode()
         //precisam ser programados em Cliente
         if(clientes.contains(c)) {
-            Alert alerta = new Alert(Alert.AlertType.WARNING, 
-                           "Cliente duplicado, tente outro",
-                           ButtonType.OK);
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Cliente duplicado, tente outro");               
             alerta.showAndWait();
             return;
         }
-        else
+        else {
             clientes.add(c);
-        
-        //Limpa os campos
-        limpaCampos();
-        //Manda o cursor para a comboBox
-        cbxCliente.requestFocus();
-        
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+
+            //Limpa os campos
+            limpaCampos();
+            //Manda o cursor para a comboBox
+            cbxCliente.requestFocus();
+
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Sucesso");
             alerta.setHeaderText("Cliente cadastrado com sucesso!");
             alerta.showAndWait();
+        }
     }
     
     private void limpaCampos() {
@@ -146,6 +159,10 @@ public class VW_ClienteController implements Initializable {
         txtCpf.clear();
         txtTelefone.clear();
         txtEmail.clear();
+        cbxCliente.getSelectionModel().select(null);
+        
+        //Manda o cursor para a comboBox
+        cbxCliente.requestFocus();
     }
 
     @FXML
