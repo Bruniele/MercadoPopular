@@ -232,6 +232,27 @@ public class VW_ClienteController implements Initializable {
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
+        if(cbxCliente.getSelectionModel().getSelectedItem() == null){
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Alerta");
+            alerta.setHeaderText("Escolha um cliente para pesquisar!");
+            alerta.showAndWait();
+        }
+        
+        else{
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION,
+                "Código:     " + (Integer.parseInt(txtCodigoCliente.getText())) + "\n" +
+                "Nome:       " + cbxCliente.getSelectionModel().getSelectedItem().getNome() + "\n" +
+                "Idade:        "  + (Integer.parseInt(txtIdade.getText())) + "\n" +
+                "CPF:           " + txtCpf.getText() + "\n" +
+                "Telefone:   " + txtTelefone.getText() + "\n" +
+                "E-mail:       " + txtEmail.getText() 
+                    ,
+                    ButtonType.OK);
+            alerta.setTitle("Pesquisa");
+            alerta.setHeaderText("Dados do Cliente");
+            alerta.showAndWait();
+        }
     }
     
     /**
