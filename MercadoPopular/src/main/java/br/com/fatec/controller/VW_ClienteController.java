@@ -180,14 +180,31 @@ public class VW_ClienteController implements Initializable {
         //Para contains funcionar o equals() e hashCode()
         //precisam ser programados em Cliente
         if(clientes.contains(c)) {
-            clientes.remove(c);
-            limpaCampos();
-            //Manda o cursor para o campo do código do cliente
-            txtCodigoCliente.requestFocus();
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Sucesso");
-            alerta.setHeaderText("Cliente removido com sucesso!");
-            alerta.showAndWait();
+            Alert alertaExcluir = new Alert(Alert.AlertType.CONFIRMATION,
+                "Código:     " + (Integer.parseInt(txtCodigoCliente.getText())) + "\n" +
+                "Nome:       " + cbxCliente.getSelectionModel().getSelectedItem().getNome());
+            ButtonType btnSim = new ButtonType("Sim");
+            ButtonType btnNao = new ButtonType("Não");
+            alertaExcluir.setTitle("Confirmar Exclusão");
+            alertaExcluir.setHeaderText("Você realmente deseja excluir o cliente");
+            alertaExcluir.getButtonTypes().setAll(btnSim, btnNao);
+            alertaExcluir.showAndWait().ifPresent(b -> {
+                if (b == btnSim) {
+                    clientes.remove(c);
+                    limpaCampos();
+                    
+                    //Manda o cursor para o campo do código do cliente
+                    txtCodigoCliente.requestFocus();
+                    
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Sucesso");
+                    alerta.setHeaderText("Cliente removido com sucesso!");
+                    alerta.showAndWait();
+                    
+                }else if (b == btnNao) {
+                    return;
+                }
+            });
             
         }else{
             Alert alerta = new Alert(Alert.AlertType.ERROR);
