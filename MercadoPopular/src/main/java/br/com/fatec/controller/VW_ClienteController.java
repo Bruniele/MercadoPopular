@@ -120,7 +120,7 @@ public class VW_ClienteController implements Initializable {
                 || txtIdade.getLength() == 0 || txtCpf.getLength() == 0 
                 || txtTelefone.getLength() == 0 || txtEmail.getLength() == 0){
             Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Erro");
+            alerta.setTitle("Aviso");
             alerta.setHeaderText("Preencha todos os campos!");
             alerta.showAndWait();
             return;
@@ -131,7 +131,7 @@ public class VW_ClienteController implements Initializable {
         //Para contains funcionar o equals() e hashCode()
         //precisam ser programados em Cliente
         if(clientes.contains(c)) {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro");
             alerta.setHeaderText("Cliente duplicado, tente outro");               
             alerta.showAndWait();
@@ -142,8 +142,8 @@ public class VW_ClienteController implements Initializable {
 
             //Limpa os campos
             limpaCampos();
-            //Manda o cursor para a comboBox
-            cbxCliente.requestFocus();
+            //Manda o cursor para o campo do código do cliente
+            txtCodigoCliente.requestFocus();
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Sucesso");
@@ -161,8 +161,8 @@ public class VW_ClienteController implements Initializable {
         txtEmail.clear();
         cbxCliente.getSelectionModel().select(null);
         
-        //Manda o cursor para a comboBox
-        cbxCliente.requestFocus();
+        //Manda o cursor para o campo do código do cliente
+        txtCodigoCliente.requestFocus();
     }
 
     @FXML
@@ -170,7 +170,7 @@ public class VW_ClienteController implements Initializable {
         //Verifica se a comboBox esta vazia
         if(cbxCliente.getSelectionModel().getSelectedItem() == null){
             Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Erro");
+            alerta.setTitle("Aviso");
             alerta.setHeaderText("Escolha um cliente para excluir!");
             alerta.showAndWait();
             return;
@@ -182,8 +182,8 @@ public class VW_ClienteController implements Initializable {
         if(clientes.contains(c)) {
             clientes.remove(c);
             limpaCampos();
-            //Manda o cursor para a comboBox
-            cbxCliente.requestFocus();
+            //Manda o cursor para o campo do código do cliente
+            txtCodigoCliente.requestFocus();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Sucesso");
             alerta.setHeaderText("Cliente removido com sucesso!");
@@ -199,6 +199,35 @@ public class VW_ClienteController implements Initializable {
 
     @FXML
     private void btnAlterar_Click(ActionEvent event) {
+        //Verifica se a comboBox esta vazia
+        if(cbxCliente.getSelectionModel().getSelectedItem() == null){
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Aviso");
+            alerta.setHeaderText("Escolha um cliente para alterar!");
+            alerta.showAndWait();
+            return;
+        }
+        
+        Cliente c = moveDadosTelaModel();
+        //Para contains funcionar o equals() e hashCode()
+        //precisam ser programados em Cliente
+        if(clientes.contains(c)) {
+            clientes.remove(c);
+            clientes.add(c);
+            limpaCampos();
+            //Manda o cursor para o campo do código do cliente
+            txtCodigoCliente.requestFocus();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Sucesso");
+            alerta.setHeaderText("Cliente alterado com sucesso!");
+            alerta.showAndWait();
+            
+        }else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Cliente não existe");
+            alerta.showAndWait();
+        }
     }
 
     @FXML
