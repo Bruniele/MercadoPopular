@@ -6,16 +6,64 @@ use MercadoPopular;
 
 CREATE TABLE if not exists Fornecedor (
 
-    codigo_fornecedor INT NOT NULL AUTO_INCREMENT,
-    nome_fornecedor VARCHAR(100) NOT NULL,
+	id INT AUTO_INCREMENT UNIQUE,
+	codigoFornecedor INT(30) NOT NULL,
+    nomeFornecedor VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     telefone VARCHAR(20) NOT NULL,
-    endereco VARCHAR(200) NOT NULL,
-    numero INT(20),
-    cep VARCHAR(10), 
+    marca VARCHAR(30) NOT NULL,
+    cep VARCHAR(10),
+    logradouro VARCHAR(200) NOT NULL,
+    bairro VARCHAR(150) NOT NULL,
+    localidade VARCHAR(150) NOT NULL,
+    uf VARCHAR(3) NOT NULL, 
     
-    PRIMARY KEY(codigo_fornecedor)
+    PRIMARY KEY(codigoFornecedor)
 )default charset=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS Categoria(
+	id INT NOT NULL AUTO_INCREMENT,
+    nomeCategoria VARCHAR(50),
+    
+    PRIMARY KEY(id)
+);
+
+
+INSERT INTO Categoria 
+(id, nomeCategoria)
+VALUES
+(default,'Vegano'),
+(default,'Bebida'),
+(default,'Açougue'),
+(default, 'Frios'),
+(default,'Padaria'),
+(default,'Congelados'),
+(default, 'Hortifruti');
+
+
+
+
+
+
+Create table if not exists Produto(
+	
+    id int not null auto_increment,
+	nome_produto varchar(120) NOT NULL,
+    preco decimal (10,2) NOT NULL,
+    descricao text,
+    quantidade int,
+    validade varchar(10),
+    codigo_fornecedor int not null,
+    codigo_categoria int not null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (codigoFornecedor) REFERENCES Fornecedor(id),
+    FOREIGN KEY (codigo_categoria) REFERENCES Categoria(id)
+    
+)default charset=utf8;
+
+
 
 
 

@@ -6,23 +6,30 @@ public class Fornecedor {
     private String nomeFornecedor;
     private String email;
     private String telefone;
-    private String endereco;
-    private String numero;
+    private String marca;
     private String cep;
+    private String logradouro;
+    private String bairro;
+    private String localidade;
+    private String uf;
 
     public Fornecedor() {
-        
     }
 
-    public Fornecedor(int codigoFornecedor, String nomeFornecedor, String email, String telefone, String endereco, String numero, String cep) {
+    public Fornecedor(int codigoFornecedor, String nomeFornecedor, String email, String telefone,String marca,String cep, String logradouro, String bairro, String localidade, String uf) {
         this.codigoFornecedor = codigoFornecedor;
         this.nomeFornecedor = nomeFornecedor;
         this.email = email;
         this.telefone = telefone;
-        this.endereco = endereco;
-        this.numero = numero;
+        this.marca = marca;
         this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
     }
+    
+    
 
     public int getCodigoFornecedor() {
         return codigoFornecedor;
@@ -48,6 +55,14 @@ public class Fornecedor {
         this.email = email;
     }
 
+    public String getMarca(){
+        return marca;
+    }
+    
+    public void setMarcaFornecedor(String marca){
+        this.marca = marca;
+    }
+    
     public String getTelefone() {
         return telefone;
     }
@@ -56,28 +71,44 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
     public String getCep() {
         return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     @Override
@@ -104,8 +135,12 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "nomeFornecedor=" + nomeFornecedor + '}';
+        return this.getNomeFornecedor();
     }
+
+    
+    
+    
 
    
     

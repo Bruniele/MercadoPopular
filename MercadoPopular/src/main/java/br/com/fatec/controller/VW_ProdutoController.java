@@ -4,15 +4,26 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.DAO.CategoriaDAO;
+import br.com.fatec.DAO.FornecedorDAO;
+import br.com.fatec.DAO.ProdutoDAO;
 import br.com.fatec.Menu;
+import br.com.fatec.Produto;
+import br.com.fatec.model.Categoria;
+import br.com.fatec.model.Fornecedor;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -35,9 +46,9 @@ public class VW_ProdutoController implements Initializable {
     @FXML
     private TextField txtDescricao;
     @FXML
-    private ComboBox<?> cbxCategoria;
+    private ComboBox<Categoria> cbxCategoria; 
     @FXML
-    private ComboBox<?> cbxFornecedor;
+    private ComboBox<Fornecedor> cbxFornecedor;
     @FXML
     private Button btnInserir;
     @FXML
@@ -51,17 +62,35 @@ public class VW_ProdutoController implements Initializable {
     @FXML
     private TextField txtCodigoCategoria;
 
-
-    /**
-     * Initializes the controller class.
-     */
+     
+    private Produto produto;
+    private Fornecedor fornecedor;
+    private Categoria categoria;
+    ProdutoDAO produtoDAO = new ProdutoDAO();
+    FornecedorDAO fornecedoDAO = new FornecedorDAO();
+    CategoriaDAO categoriaDAO = new CategoriaDAO();
+    
+    private ObservableList<Fornecedor> fornecedores = 
+            FXCollections.observableArrayList();
+    
+    private ObservableList<Categoria> categorias = 
+            FXCollections.observableArrayList();
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        preencherComboFornecedor();
+        cbxFornecedor.setItems(fornecedores);
+        
+        
+        preencherComboCategoria();
+        cbxCategoria.setItems(categorias);
+        
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
         btnPesquisar.setGraphic(new ImageView("/br/com/fatec/icons/iconePesquisar.png"));
+        
     }    
 
     @FXML
@@ -94,5 +123,31 @@ public class VW_ProdutoController implements Initializable {
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
     }
+ 
     
+    
+    private void mensagem(String texto, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo, texto, ButtonType.OK);
+        alerta.showAndWait();
+    }
+    
+    
+    private void preencherComboFornecedor(){
+        try{
+            fornecedores.addAll(fornecedoDAO.lista(""));
+        }catch(SQLException ex){
+            mensagem("Erro no preenchimento da Combo: " + 
+                    ex.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
+    private void preencherComboCategoria(){
+        try{
+            categorias.addAll(categoriaDAO.lista(""));
+        }catch(SQLException ex){
+            mensagem("Erro no preenchimento da Combo: " + 
+                    ex.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+  
 }

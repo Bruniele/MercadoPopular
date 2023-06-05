@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.com.fatec.controller;
 
 import br.com.fatec.DAO.FornecedorDAO;
 import br.com.fatec.Formatter.TextFieldFormatter;
 import br.com.fatec.Menu;
+import br.com.fatec.model.Endereco;
 import br.com.fatec.model.Fornecedor;
+import br.com.fatec.services.ViacepService;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -15,37 +14,38 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author bruni
- */
 public class VW_FornecedorController implements Initializable {
 
     @FXML
     private Button btnVoltar;
     @FXML
-    private TextField txtNomeFornecedor;
+    private TextField txtCodigoFornecedor;
     @FXML
-    private TextField txtEndereco;
+    private TextField txtNomeFornecedor;
     @FXML
     private TextField txtEmail;
     @FXML
     private TextField txtTelefone;
     @FXML
-    private TextField txtCodigoFornecedor;
-    @FXML
-    private TextField txtNumero;
+    private TextField txtMarca;
     @FXML
     private TextField txtCep;
-    
-
+    @FXML
+    private TextField txtLogradouro;
+    @FXML
+    private TextField txtBairro;
+    @FXML
+    private TextField txtCidade;
+    @FXML
+    private TextField txtUf;
     @FXML
     private Button btnInserir;
     @FXML
@@ -54,20 +54,20 @@ public class VW_FornecedorController implements Initializable {
     private Button btnAlterar;
     @FXML
     private Button btnPesquisar;
-    /**
-     * Initializes the controller class.
-     */
-    
+
+    //Variáveis auxiliares
+    private Fornecedor fornecedor;
     FornecedorDAO fornecedorDAO = new FornecedorDAO();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        habilitarInclusao();
+
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
         btnPesquisar.setGraphic(new ImageView("/br/com/fatec/icons/iconePesquisar.png"));
-
     }
 
     @FXML
@@ -86,55 +86,112 @@ public class VW_FornecedorController implements Initializable {
     }
 
     @FXML
-    private void btnInserir_Click(ActionEvent event) throws SQLException {
-        Integer codFornecedor = Integer.parseInt(txtCodigoFornecedor.getText());
-        String nomeFornecedor = txtNomeFornecedor.getText();
-        String endereco = txtEndereco.getText();
-        String email = txtEmail.getText();
-        String telefone = txtTelefone.getText();
-        String numero = txtNumero.getText();
-//        Integer numero = Integer.parseInt(txtNumero.getText
-        String cep = txtCep.getText();
-        
-        Fornecedor fornecedor = new Fornecedor();
-        
-        
-        fornecedor.setCodigoFornecedor(codFornecedor);
-        fornecedor.setNomeFornecedor(nomeFornecedor);
-        fornecedor.setEndereco(endereco);
-        fornecedor.setEmail(email);
-        fornecedor.setTelefone(telefone);
-        fornecedor.setNumero(numero);
-        fornecedor.setCep(cep);
-        
-        fornecedorDAO.insere(fornecedor);
-        
-        
-        txtCodigoFornecedor.clear();
-        txtNomeFornecedor.clear();
-        txtEndereco.clear();
-        txtEmail.clear();
-        txtTelefone.clear();
-        txtTelefone.clear();
-        txtNumero.clear();
-        txtCep.clear();
-     
+    private void btnInserir_Click(ActionEvent event) {
+        try {
+            if (!validarCampos()) {
+                mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
+                return; // Sai fora do método
+            }
 
+            int codigoFornecedor = Integer.parseInt(txtCodigoFornecedor.getText());
+
+            if (fornecedorDAO.buscaID(codigoFornecedor)) {
+                mensagem("Código do fornecedor já existe!", Alert.AlertType.WARNING);
+                txtCodigoFornecedor.clear();
+                return; // Sai fora do método
+            }
+
+            moveDadosTelaModel();
+
+            fornecedorDAO.insere(fornecedor);
+
+            limparTextField();
+            mensagem("Dados incluídos com sucesso", Alert.AlertType.INFORMATION);
+        } catch (NumberFormatException ex) {
+            mensagem("Código do fornecedor inválido!", Alert.AlertType.ERROR);
+        } catch (SQLException ex) {
+            mensagem("Erro na inclusão: " + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception ex) {
+            mensagem("Erro genérico na inclusão: " + ex.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
-    private void btnExcluir_Click(ActionEvent event) {  
+    private void btnExcluir_Click(ActionEvent event) {
+        if(!validarCampos()){
+            mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
+            return;
+        }
+        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Mensagem ao Usuário");
+        alert.setHeaderText("Aviso de Exclusão");
+        alert.setContentText("Confirma a Exclusão deste Veículo?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        
+        
+        fornecedor = moveDadosTelaModel();
+        
+        try{
+            if(fornecedorDAO.remove(fornecedor)){
+                mensagem("Dados excluidos com sucesso", Alert.AlertType.INFORMATION);
+                limparTextField();
+                txtCodigoFornecedor.requestFocus();
+            }
+        }catch(SQLException ex){
+            mensagem("Erro na Esclusão"+ex.getMessage(), Alert.AlertType.ERROR);
+        }catch(Exception ex){
+            mensagem("Erro genérico na exclusão",Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void btnAlterar_Click(ActionEvent event) {
+         
+        if(!validarCampos()) {
+            mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
+            return; //sai fora do método
+        }
+        
+        
+        fornecedor = moveDadosTelaModel();
+        
+        try{
+            if(fornecedorDAO.altera(fornecedor)){
+                mensagem("Dados Alterados com sucesso", Alert.AlertType.INFORMATION);
+                limparTextField();
+                habilitarInclusao();
+                txtCodigoFornecedor.requestFocus(); 
+            }
+        }catch(SQLException ex){
+            mensagem("Erro na alteração "+ ex.getMessage(),Alert.AlertType.ERROR);
+        }catch(Exception ex){
+            mensagem("Erro genérico na alteração "+ex.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
-    private void btnPesquisar_Click(ActionEvent event) {
+    private void btnPesquisar_Click(ActionEvent event) throws SQLException {
+        fornecedor = new Fornecedor();
+
+        fornecedor.setCodigoFornecedor(Integer.parseInt(txtCodigoFornecedor.getText()));
+
+        try {
+
+            fornecedor = fornecedorDAO.buscaID(fornecedor);
+
+            if (fornecedor == null) {
+                mensagem("Fornecedor não existe!!!", Alert.AlertType.ERROR);
+            } else {
+                moveDadosModelTela(fornecedor);
+                habilitarAlteracaoExclusao();
+            }
+
+        } catch (NumberFormatException | SQLException e) {
+            mensagem("Erro na Pesquisa" + e.getMessage(),
+                    Alert.AlertType.ERROR);
+        }
     }
-
-
 
     @FXML
     private void onCelularKeyReleased(KeyEvent event) {
@@ -146,21 +203,101 @@ public class VW_FornecedorController implements Initializable {
     }
 
     @FXML
-    private void onNumeroKeyReased(KeyEvent event) {
-        TextFieldFormatter tff = new TextFieldFormatter();
-        tff.setMask("######");
-        tff.setCaracteresValidos("0123456789");
-        tff.setTf(txtNumero);
-        tff.formatter();
+    private void handleCepFieldKeyTyped(KeyEvent event) {
+        String cep = txtCep.getText();
+        if (cep.length() == 8) {
+            preencherCampos(cep);
+        }
     }
 
-    @FXML
-    private void onCepKeyReleased(KeyEvent event) {
-        TextFieldFormatter tff = new TextFieldFormatter();
-        tff.setMask("#####-####");
-        tff.setCaracteresValidos("0123456789");
-        tff.setTf(txtCep);
-        tff.formatter();
+    private void preencherCampos(String cep) {
+        ViacepService viacepService = new ViacepService();
+
+        try {
+            Endereco endereco = viacepService.getEndereco(cep);
+            txtLogradouro.setText(endereco.getLogradouro());
+            txtBairro.setText(endereco.getBairro());
+            txtCidade.setText(endereco.getLocalidade());
+            txtUf.setText(endereco.getUf());
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+
+    private void limparTextField() {
+        txtCodigoFornecedor.clear();
+        txtNomeFornecedor.clear();
+        txtEmail.clear();
+        txtTelefone.clear();
+        txtMarca.clear();
+        txtCep.clear();
+        txtLogradouro.clear();
+        txtBairro.clear();
+        txtCidade.clear();
+        txtUf.clear();
+        txtCodigoFornecedor.requestFocus();
+    }
+
+    private void habilitarInclusao() {
+        btnInserir.setDisable(false);
+        btnExcluir.setDisable(true);
+        btnAlterar.setDisable(true);
+    }
+
+    private void habilitarAlteracaoExclusao() {
+        btnInserir.setDisable(true);
+        btnExcluir.setDisable(false);
+        btnAlterar.setDisable(false);
+    }
+
+    private void mensagem(String texto, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo, texto, ButtonType.OK);
+        alerta.showAndWait();
+    }
+
+    private Fornecedor moveDadosTelaModel() {
+        fornecedor = new Fornecedor();
+        fornecedor.setCodigoFornecedor(Integer.parseInt(txtCodigoFornecedor.getText()));
+        fornecedor.setNomeFornecedor(txtNomeFornecedor.getText());
+        fornecedor.setEmail(txtEmail.getText());
+        fornecedor.setTelefone(txtTelefone.getText());
+        fornecedor.setMarcaFornecedor(txtMarca.getText());
+        fornecedor.setCep(txtCep.getText());
+        fornecedor.setLogradouro(txtLogradouro.getText());
+        fornecedor.setBairro(txtBairro.getText());
+        fornecedor.setLocalidade(txtCidade.getText());
+        fornecedor.setUf(txtUf.getText());
+
+        return fornecedor;
+    }
+
+    private void moveDadosModelTela(Fornecedor v) {
+        txtNomeFornecedor.setText(fornecedor.getNomeFornecedor());
+        txtEmail.setText(fornecedor.getEmail());
+        txtTelefone.setText(fornecedor.getTelefone());
+        txtMarca.setText(fornecedor.getMarca());
+        txtCep.setText(fornecedor.getCep());
+        txtLogradouro.setText(fornecedor.getLogradouro());
+        txtBairro.setText(fornecedor.getBairro());
+        txtCidade.setText(fornecedor.getLocalidade());
+        txtUf.setText(fornecedor.getUf());
+    }
+
+    private boolean validarCampos() {
+        if (txtCodigoFornecedor.getText().length() == 0
+                || txtNomeFornecedor.getText().length() == 0
+                || txtEmail.getText().length() == 0
+                || txtTelefone.getText().length() == 0
+                || txtMarca.getText().length() == 0
+                || txtCep.getText().length() == 0
+                || txtLogradouro.getText().length() == 0
+                || txtBairro.getText().length() == 0
+                || txtCidade.getText().length() == 0
+                || txtUf.getText().length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

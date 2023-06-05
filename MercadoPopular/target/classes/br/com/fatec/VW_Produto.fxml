@@ -9,13 +9,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="444.0" prefWidth="703.0" styleClass="mainFxmlClass" stylesheets="@css/vw_produto.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_ProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="703.0" styleClass="mainFxmlClass" stylesheets="@css/vw_produto.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_ProdutoController">
        <children>
-      <Text layoutX="282.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto">
-         <font>
-            <Font name="Ebrima Bold" size="36.0" />
-         </font>
-      </Text>
       <Button fx:id="btnVoltar" focusTraversable="false" layoutX="18.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnVoltar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Voltar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -24,74 +19,89 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Button>
-      <TextField fx:id="txtId" focusTraversable="false" layoutX="18.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="165.0" promptText="Id" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <Text layoutX="282.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto">
          <font>
-            <Font name="Ebrima" size="16.0" />
+            <Font name="Ebrima Bold" size="36.0" />
          </font>
-      </TextField>
-      <TextField fx:id="txtNomeProduto" focusTraversable="false" layoutX="200.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="303.0" promptText="Nome do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font name="Ebrima" size="16.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtPreco" focusTraversable="false" layoutX="520.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="165.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font name="Ebrima" size="16.0" />
-         </font>
-      </TextField>
+      </Text>
       <ImageView fitHeight="85.0" fitWidth="151.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@image/mercadoPopular.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtDescricao" focusTraversable="false" layoutX="19.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="664.0" promptText="Descrição do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtId" layoutX="18.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="165.0" promptText="Codigo do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="cbxCategoria" focusTraversable="false" layoutX="258.0" layoutY="315.0" prefHeight="37.0" prefWidth="425.0" promptText="Categoria" styleClass="comboBox" stylesheets="@css/vw_produto.css" />
-      <ComboBox fx:id="cbxFornecedor" focusTraversable="false" layoutX="258.0" layoutY="257.0" prefHeight="37.0" prefWidth="425.0" promptText="Fornecedor" styleClass="comboBox" stylesheets="@css/vw_produto.css" />
-      <Button fx:id="btnInserir" focusTraversable="false" layoutX="18.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnInserir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Inserir" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Ebrima Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnExcluir" focusTraversable="false" layoutX="191.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnExcluir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Excluir" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Ebrima Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAlterar" focusTraversable="false" layoutX="364.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAlterar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Alterar" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Ebrima Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnPesquisar" focusTraversable="false" layoutX="535.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Pesquisar" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Ebrima Bold" size="16.0" />
-         </font>
-      </Button>
-      <TextField fx:id="txtCodigoFornecedor" focusTraversable="false" layoutX="19.0" layoutY="256.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="219.0" promptText="Código do Fornecedor" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtNomeProduto" layoutX="200.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="303.0" promptText="Nome do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtCodigoCategoria" focusTraversable="false" layoutX="18.0" layoutY="313.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="219.0" promptText="Código da Categoria" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtPreco" layoutX="520.0" layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="165.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
+      <TextField fx:id="txtDescricao" layoutX="19.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="664.0" promptText="Descrição do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtQuantidade" layoutX="20.0" layoutY="257.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="303.0" promptText="Quantidade" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <DatePicker fx:id="txtValidade" layoutX="378.0" layoutY="260.0" prefHeight="37.0" prefWidth="303.0" promptText="Validade" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="txtCodigoFornecedor" layoutX="20.0" layoutY="323.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="219.0" promptText="Código do Fornecedor" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCodigoCategoria" layoutX="19.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="219.0" promptText="Código da Categoria" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cbxFornecedor" layoutX="259.0" layoutY="324.0" prefHeight="37.0" prefWidth="425.0" promptText="Fornecedor" styleClass="comboBox" stylesheets="@css/vw_produto.css" />
+      <ComboBox fx:id="cbxCategoria" layoutX="259.0" layoutY="382.0" prefHeight="37.0" prefWidth="425.0" promptText="Categoria" styleClass="comboBox" stylesheets="@css/vw_produto.css" />
+      <HBox layoutX="138.0" layoutY="414.0" prefHeight="50.0" prefWidth="703.0" spacing="34.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+         <children>
+            <Button fx:id="btnInserir" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnInserir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Inserir" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnExcluir" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnExcluir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Excluir" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAlterar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAlterar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Alterar" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPesquisar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_produto.css" text="Pesquisar" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

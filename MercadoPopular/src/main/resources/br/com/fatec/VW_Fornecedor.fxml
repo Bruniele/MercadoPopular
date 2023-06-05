@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="606.0" prefWidth="703.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_FornecedorController">
+<AnchorPane id="AnchorPane" prefHeight="537.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_FornecedorController">
     <stylesheets>
         <URL value="@/br/com/fatec/css/vw_fornecedor.css" />
     </stylesheets>
@@ -33,32 +33,57 @@
             <Image url="@image/mercadoPopular.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtNomeFornecedor" focusTraversable="false" layoutX="359.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="325.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="19.0">
+      <TextField fx:id="txtCodigoFornecedor" layoutX="20.0" layoutY="138.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Código do Fornecedor" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtEndereco" focusTraversable="false" layoutX="20.0" layoutY="381.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="661.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+      <TextField fx:id="txtNomeFornecedor" layoutX="369.0" layoutY="138.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Nome do Fornecedor" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtEmail" focusTraversable="false" layoutX="20.0" layoutY="286.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+      <TextField fx:id="txtEmail" layoutX="20.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTelefone" focusTraversable="false" layoutX="359.0" layoutY="286.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="325.0" promptText="(  )     -" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="19.0">
+      <TextField fx:id="txtTelefone" layoutX="365.0" layoutY="201.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtCodigoFornecedor" focusTraversable="false" layoutX="20.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtMarca" layoutX="20.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="Marca" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <HBox alignment="CENTER" layoutX="8.0" layoutY="522.0" prefHeight="74.0" prefWidth="703.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="522.0">
+      <TextField fx:id="txtCep" layoutX="365.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleCepFieldKeyTyped" prefHeight="40.0" prefWidth="315.0" promptText="Cep" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtLogradouro" layoutX="20.0" layoutY="324.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtBairro" layoutX="365.0" layoutY="324.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCidade" layoutX="20.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUf" layoutX="366.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="157.0" promptText="UF" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="366.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <HBox alignment="CENTER" layoutX="8.0" layoutY="362.0" prefHeight="74.0" prefWidth="703.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0">
          <children>
             <Button fx:id="btnInserir" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnInserir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Inserir" textFill="WHITE">
                <cursor>
@@ -106,50 +131,5 @@
             </Button>
          </children>
       </HBox>
-      <TextField fx:id="txtCep" focusTraversable="false" layoutX="367.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCepKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="     -" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font name="Ebrima" size="16.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtNumero" focusTraversable="false" layoutX="20.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onNumeroKeyReased" prefHeight="40.0" prefWidth="325.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
-         <font>
-            <Font name="Ebrima" size="16.0" />
-         </font>
-      </TextField>
-      <Text layoutX="22.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Fornecedor">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="359.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Fornecedor">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="22.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="359.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="22.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="22.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="367.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cep">
-         <font>
-            <Font name="Ebrima" size="18.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
