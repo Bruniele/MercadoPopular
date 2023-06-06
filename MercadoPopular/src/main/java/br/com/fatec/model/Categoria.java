@@ -2,26 +2,26 @@ package br.com.fatec.model;
 
 /**
  *
- * @author sanoj
+ * @author bruni
  */
 public class Categoria {
-   private int id;
-   private String nomeCategoria;
+    private int codigoCategoria;
+    private String nomeCategoria;
 
     public Categoria() {
     }
 
-    public Categoria(int id, String nomeCategoria) {
-        this.id = id;
+    public Categoria(int codigoCategoria, String nomeCategoria) {
+        this.codigoCategoria = codigoCategoria;
         this.nomeCategoria = nomeCategoria;
     }
 
-    public int getId() {
-        return id;
+    public int getCodigoCategoria() {
+        return codigoCategoria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCodigoCategoria(int codigoCategoria) {
+        this.codigoCategoria = codigoCategoria;
     }
 
     public String getNomeCategoria() {
@@ -35,7 +35,7 @@ public class Categoria {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + this.id;
+        hash = 47 * hash + this.codigoCategoria;
         return hash;
     }
 
@@ -51,14 +51,12 @@ public class Categoria {
             return false;
         }
         final Categoria other = (Categoria) obj;
-        return this.id == other.id;
+        return this.codigoCategoria == other.codigoCategoria;
     }
 
     @Override
     public String toString() {
         return this.getNomeCategoria();
-    }
-   
-    
+    } 
    
 }

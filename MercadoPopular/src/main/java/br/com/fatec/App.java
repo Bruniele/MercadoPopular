@@ -1,5 +1,7 @@
 package br.com.fatec;
 
+import br.com.fatec.DAO.CategoriaDAO;
+import br.com.fatec.model.Categoria;
 import br.com.fatec.persistencia.Banco;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +47,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        //Testar a conexão com o banco
         try {
             Banco.conectar();
             Banco.desconectar();
@@ -53,6 +56,22 @@ public class App extends Application {
         catch (SQLException ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
+        
+        /*
+        //Adicionar uma categoria sem a tela
+        CategoriaDAO dao = new CategoriaDAO();
+        Categoria c = new Categoria(8, "Limpeza");
+        
+        try {
+            if(dao.insere(c))
+                System.out.println("Inclusão OK");
+            else 
+                System.out.println("Erro na Inclusão");
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        */
         
         launch();
     }

@@ -21,15 +21,14 @@
             <version>13</version>
         </dependency>
         
-
-        <!--Conexão mariabd
+        
+        <!--Conexão mariabd -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>3.0.9</version>
             <type>jar</type>
         </dependency>
-        -->
         
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>

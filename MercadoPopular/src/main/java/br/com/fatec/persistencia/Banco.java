@@ -48,7 +48,7 @@ public class Banco {
 
         //MariaDB xampp
         //String url = "jdbc:mariadb://" + servidor +
-        //             ":" + porta + "/" + bancoDados;
+                    // ":" + porta + "/" + bancoDados;
         
         //sqlServer
         //String url = "jdbc:sqlserver://" + servidor
