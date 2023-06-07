@@ -42,14 +42,6 @@ public class VW_FuncionarioController implements Initializable {
     @FXML
     private TextField txtSalario;
     @FXML
-    private TextField txtCep;
-    @FXML
-    private TextField txtLogradouro;
-    @FXML
-    private TextField txtBairro;
-    @FXML
-    private TextField txtCidade;
-    @FXML
     private Button btnInserir;
     @FXML
     private Button btnExcluir;
@@ -64,6 +56,8 @@ public class VW_FuncionarioController implements Initializable {
     private Endereco endereco;
 
     FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    @FXML
+    private Button btnLimpar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,20 +93,22 @@ public class VW_FuncionarioController implements Initializable {
                 return;
             }
 
-//            int codigoFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
-//
-//            if (funcionarioDAO.BuscaID(codigoFuncionario)) {
-//                mensagem("Código do fornecedor já existe!", Alert.AlertType.WARNING);
-//                txtCodigoFuncionario.clear();
-//                return;
-//            }
+            int codigoFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
+
+            if (funcionarioDAO.BuscaID(codigoFuncionario)) {
+                mensagem("Código do fornecedor já existe!", Alert.AlertType.WARNING);
+                txtCodigoFuncionario.clear();
+                return;
+            }
             moveDadosTelaModel();
 
             funcionarioDAO.insere(funcionario);
 
             limparTextField();
+
             mensagem("Dados incluídos com sucesso", Alert.AlertType.INFORMATION);
         } catch (NumberFormatException ex) {
+
             mensagem("Código do fornecedor inválido!", Alert.AlertType.ERROR);
         } catch (SQLException ex) {
 
@@ -144,7 +140,7 @@ public class VW_FuncionarioController implements Initializable {
             if (funcionario == null) {
                 mensagem("Funcionário não existe!!!", Alert.AlertType.ERROR);
             } else {
-//                moveDadosModelTela(funcionario);
+                moveDadosModelTela(funcionario);
                 habilitarAlteracaoExclusao();
             }
 
@@ -152,6 +148,19 @@ public class VW_FuncionarioController implements Initializable {
             mensagem("Erro na Pesquisa" + e.getMessage(),
                     Alert.AlertType.ERROR);
         }
+    }
+
+    @FXML
+    private void btnLimpar_Click(ActionEvent event) {
+        txtCodigoFuncionario.clear();
+        txtNomeFuncionario.clear();
+        txtEmail.clear();
+        txtTelefone.clear();
+        txtRg.clear();
+        txtCpf.clear();
+        txtSetor.clear();
+        txtSalario.clear();
+        habilitarInclusao();
     }
 
     //CELULAR
@@ -311,5 +320,4 @@ public class VW_FuncionarioController implements Initializable {
 //    private String removerCaracteresEspeciais(String cep) {
 //        return cep.replaceAll("[^0-9]", "");
 //    }
-
 

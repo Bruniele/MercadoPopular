@@ -89,6 +89,10 @@ public class Funcionario {
         this.salario = salario;
     }
 
+    
+    
+    
+    
    
     @Override
     public int hashCode() {
