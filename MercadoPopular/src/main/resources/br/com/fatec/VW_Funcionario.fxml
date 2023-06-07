@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="487.0" prefWidth="702.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_FuncionarioController">
+    <stylesheets>
+        <URL value="@/br/com/fatec/css/vw_fornecedor.css" />
+    </stylesheets>
+    <children>
+      <Button fx:id="btnVoltar" focusTraversable="false" layoutX="18.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnVoltar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Voltar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </Button>
+      <Text layoutX="268.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionário">
+         <font>
+            <Font name="Ebrima Bold" size="36.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="85.0" fitWidth="151.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true">
+         <image>
+            <Image url="@image/mercadoPopular.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtCodigoFuncionario" layoutX="20.0" layoutY="138.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="73.0" promptText="Código" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNomeFuncionario" layoutX="369.0" layoutY="138.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="20.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTelefone" layoutX="365.0" layoutY="201.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtRg" layoutX="20.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onRgKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="RG" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtCpf" layoutX="365.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCpfKeyReleased" prefHeight="40.0" prefWidth="315.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtSetor" layoutX="20.0" layoutY="327.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Setor" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtSalario" layoutX="365.0" layoutY="327.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" promptText="Salário" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font name="Ebrima" size="16.0" />
+         </font>
+      </TextField>
+      <HBox alignment="CENTER" layoutX="8.0" layoutY="362.0" prefHeight="74.0" prefWidth="703.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0">
+         <children>
+            <Button fx:id="btnInserir" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnInserir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Inserir" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnExcluir" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnExcluir_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Excluir" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnAlterar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAlterar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Alterar" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnPesquisar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Pesquisar" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

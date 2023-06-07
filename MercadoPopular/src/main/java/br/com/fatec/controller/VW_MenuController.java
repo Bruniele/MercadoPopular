@@ -30,6 +30,8 @@ public class VW_MenuController implements Initializable {
     private Button btnFornecedor;
     @FXML
     private Button btnEstoque;
+    @FXML
+    private Button btnFuncionario;
 
     /**
      * Initializes the controller class.
@@ -40,7 +42,8 @@ public class VW_MenuController implements Initializable {
         btnProduto.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuProduto.png"));
         btnFornecedor.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuFornecedor.png"));
         btnEstoque.setGraphic(new ImageView("/br/com/fatec/icons/iconeMenuEstoque.png"));
-    }    
+        btnFuncionario.setGraphic(new ImageView("/br/com/fatec/icons/iconeFuncionario.png"));
+    }
 
     @FXML
     private void btnCliente_Click(ActionEvent event) {
@@ -98,5 +101,18 @@ public class VW_MenuController implements Initializable {
             alert.setContentText("Erro ao encontrar a pagina");
         }
     }
-    
+
+    @FXML
+    private void btnFuncionario_Click(ActionEvent event) {
+        Funcionario open = new Funcionario();
+        try {
+            open.start(new Stage());
+            Stage stage = (Stage) btnFuncionario.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!!");
+            alert.setContentText("Erro ao encontrar a pagina");
+        }
+    }
 }

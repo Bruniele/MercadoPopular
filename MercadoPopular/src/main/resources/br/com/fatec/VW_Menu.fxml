@@ -12,7 +12,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_MenuController">
     <stylesheets>
-        <URL value="@/br/com/fatec/css/vw_menu.css"/>
+        <URL value="@/br/com/fatec/css/vw_menu.css" />
     </stylesheets>
     <children>
       <BorderPane prefHeight="707.0" prefWidth="1250.0">
@@ -88,6 +88,11 @@
                      </font>
                   </Button>
                   <Button fx:id="btnEstoque" alignment="CENTER" mnemonicParsing="false" onAction="#btnEstoque_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Estoque">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnFuncionario" alignment="CENTER" layoutX="873.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnFuncionario_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Funcionário">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>

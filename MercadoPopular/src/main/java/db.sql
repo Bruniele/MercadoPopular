@@ -42,7 +42,21 @@ VALUES
     (default, 7, 'Hortifruti');
 
 
+CREATE TABLE IF NOT EXISTS funcionario(
+	id INT AUTO_INCREMENT UNIQUE,
+	codigoFuncionario INT(30) NOT NULL,
+    nome VARCHAR(40) NOT NULL, 
+    email VARCHAR(45),
+    telefone VARCHAR(20), 
+    rg VARCHAR(20) NOT NULL UNIQUE,
+    cpf VARCHAR(20) NOT NULL UNIQUE, 
+    setor VARCHAR(40),
+    salario DOUBLE,     
+	PRIMARY KEY(codigoFuncionario)
+)charset = utf8;
 
+select * from funcionario;
+DROP TABLE funcionario;
 
 
 
