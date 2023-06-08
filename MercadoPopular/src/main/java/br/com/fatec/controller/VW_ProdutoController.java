@@ -71,7 +71,7 @@ public class VW_ProdutoController implements Initializable {
     private Button btnPesquisar;
     
     //variaveis auxiliares
-    private br.com.fatec.model.Produto produto;
+    private Produto produto;
     private Fornecedor fornecedor;
     private FornecedorDAO fornDAO = new FornecedorDAO();
     private Categoria categoria;
@@ -117,21 +117,36 @@ public class VW_ProdutoController implements Initializable {
      * @return model preenchido com os dados
      */
     private Produto moveDadosTelaModel() {
-        produto = new br.com.fatec.model.Produto();
+        produto = new Produto();
         produto.setCodigoProduto(Integer.parseInt(txtCodigoProduto.getText()));
         produto.setNomeProduto(txtNomeProduto.getText());
         produto.setPreco(Float.parseFloat(txtPreco.getText()));
         produto.setDescricao(txtDescricao.getText());
         produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-        
         produto.setValidade(txtValidade.getValue());
-        
-        
-      
         produto.setFornecedor(cbxFornecedor.getValue());
         produto.setCategoria(cbxCategoria.getValue());
         
         return produto;
+    }
+    
+    /**
+    * Move os dados do Model para a Tela
+    * @param p Dados que devem aparecer na tela
+    */
+    private void moveDadosModelTela(Produto p) {
+        txtCodigoProduto.setText(Integer.toString(p.getCodigoProduto()));
+        txtNomeProduto.setText((p.getNomeProduto()));
+        txtPreco.setText(Float.toString(p.getPreco()));
+        txtDescricao.setText((p.getDescricao()));
+        txtValidade.setValue((p.getValidade()));
+        txtQuantidade.setText(Integer.toString(p.getQuantidade()));
+        txtCodigoFornecedor.setText(Integer.toString(
+                    p.getFornecedor().getCodigoFornecedor()));
+        cbxFornecedor.setValue(p.getFornecedor());
+        txtCodigoCategoria.setText(Integer.toString(
+                    p.getCategoria().getCodigoCategoria()));
+        cbxCategoria.setValue(p.getCategoria());
     }
     
     /**
@@ -195,8 +210,6 @@ public class VW_ProdutoController implements Initializable {
         //vamos inserir
         try {
             if(prodDAO.insere(produto)) {
-
-
                 mensagem("Produto Incluído com Sucesso", 
                         Alert.AlertType.INFORMATION, "Sucesso");
                 limparCampos();
@@ -221,6 +234,26 @@ public class VW_ProdutoController implements Initializable {
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
+        produto = new Produto();
+        //quem será pesquisado
+        produto.setCodigoProduto(Integer.parseInt(txtCodigoProduto.getText()));
+        try {
+            //busca o produto
+            produto = prodDAO.buscaID(produto);
+            //se não achou
+            if(produto == null) {
+                mensagem("Produto Não Existe!!!",
+                            Alert.AlertType.ERROR, "Erro");
+            } 
+            else { //achou
+                //mostrar na tela
+                moveDadosModelTela(produto);
+                habilitaAlteracaoExclusao();
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Pesquisa: " + ex.getMessage(),
+                    Alert.AlertType.ERROR, "Erro");
+        }
     }
  
     
@@ -256,6 +289,7 @@ public class VW_ProdutoController implements Initializable {
         cbxFornecedor.getSelectionModel().clearSelection();
         txtCodigoCategoria.setText("");
         cbxCategoria.getSelectionModel().clearSelection();
+        txtCodigoProduto.requestFocus();
     }
     
     private void habilitaInclusao() {
@@ -263,6 +297,13 @@ public class VW_ProdutoController implements Initializable {
         btnInserir.setDisable(false);
         btnAlterar.setDisable(true);
         btnExcluir.setDisable(true);
+    }
+    
+    private void habilitaAlteracaoExclusao() {
+        btnInserir.setDisable(true);
+        btnLimpar.setDisable(false);
+        btnAlterar.setDisable(false);
+        btnExcluir.setDisable(false);        
     }
     
     private void configuraLostFocusFornecedor() {

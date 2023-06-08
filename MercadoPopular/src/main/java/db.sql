@@ -9,14 +9,15 @@ CREATE TABLE if not exists Fornecedor (
     id INT AUTO_INCREMENT UNIQUE,
     codigoFornecedor INT(30) NOT NULL,
     nomeFornecedor VARCHAR(100) NOT NULL,
+    site VARCHAR(100),
     email VARCHAR(100),
     telefone VARCHAR(20) NOT NULL,
-    marca VARCHAR(30) NOT NULL,
     cep VARCHAR(10),
     logradouro VARCHAR(200) NOT NULL,
     bairro VARCHAR(150) NOT NULL,
     localidade VARCHAR(150) NOT NULL,
     uf VARCHAR(3) NOT NULL, 
+    numero VARCHAR(10),
     
     PRIMARY KEY(codigoFornecedor)
 )default charset=utf8;
@@ -57,19 +58,19 @@ CREATE TABLE IF NOT EXISTS funcionario(
 
 
 
-Create table if not exists Produto(
+CREATE TABLE IF NOT EXISTS Produto(
 	
     id INT AUTO_INCREMENT UNIQUE,
     codigoProduto INT(30) NOT NULL,
-    nomeProduto varchar(100) NOT NULL,
-    preco decimal (10,2) NOT NULL,
+    nomeProduto VARCHAR(100) NOT NULL,
+    preco DECIMAL (10,2) NOT NULL,
     descricao text,
-    quantidade int(30),
-    validade varchar(10),
+    quantidade INT(30),
+    validade DATE,
     codigoFornecedor INT(30) NOT NULL,
-    nomeFornecedor varchar(100) NOT NULL,
+    nomeFornecedor VARCHAR(100) NOT NULL,
     codigoCategoria INT(30) NOT NULL,
-    nomeCategoria varchar(50) NOT NULL,
+    nomeCategoria VARCHAR(50) NOT NULL,
 
     PRIMARY KEY (codigoProduto),
     FOREIGN KEY (codigoFornecedor) REFERENCES Fornecedor(codigoFornecedor),
