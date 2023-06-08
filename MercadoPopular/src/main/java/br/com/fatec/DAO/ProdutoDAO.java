@@ -74,8 +74,32 @@ public class ProdutoDAO implements DAO<Produto> {
     }
 
     @Override
-    public boolean remove(Produto model) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean remove(Produto dado) throws SQLException {
+        boolean removeu;
+        
+        //conectar com o banco
+        Banco.conectar();
+        
+        //cria o comando SQL
+        //as ? representam os dados para serem removidos
+        String sql = "DELETE FROM Produto WHERE codigoProduto = ?";
+        
+        //cria o preparedStatement
+        pst = Banco.obterConexao().prepareStatement(sql);
+        
+        //colocar os dados no PST
+        pst.setInt(1, dado.getCodigoProduto()); //1º interrogação
+        
+        //executar o comando
+        if(pst.executeUpdate() > 0)
+            removeu = true; //tudo certo com a inserção
+        else
+            removeu = false; //ocorreu um erro na inserção
+        
+        //fecha a conexao
+        Banco.desconectar();
+        
+        return removeu;
     }
 
     @Override

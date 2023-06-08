@@ -58,7 +58,7 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSite" layoutX="20.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCelularKeyReleased" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+      <TextField fx:id="txtSite" layoutX="20.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -145,7 +145,7 @@
       </TextField>
       <HBox alignment="CENTER" layoutX="21.0" layoutY="545.0" prefHeight="74.0" prefWidth="703.0" spacing="19.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0">
          <children>
-            <Button fx:id="btnLimpar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnLimpar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@../../../../../../../../../Users/bruni/OneDrive/Documentos/ProjetoTestePooMercadoPopular/MercadoPopular/MercadoPopular/src/main/resources/br/com/fatec/css/vw_fornecedor.css" text="Limpar" textFill="WHITE">
+            <Button fx:id="btnLimpar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnLimpar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_fornecedor.css" text="Limpar" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

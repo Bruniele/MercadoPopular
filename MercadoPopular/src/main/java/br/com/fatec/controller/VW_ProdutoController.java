@@ -13,6 +13,7 @@ import br.com.fatec.model.Categoria;
 import br.com.fatec.model.Fornecedor;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -226,6 +227,42 @@ public class VW_ProdutoController implements Initializable {
 
     @FXML
     private void btnExcluir_Click(ActionEvent event) {
+        if(!validarCampos()) {
+            mensagem("Preencha todos os campos", Alert.AlertType.WARNING, "Alerta");
+            return; //sai fora do método
+        }
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+            "Código:     " + (Integer.parseInt(txtCodigoProduto.getText())) + "\n" +
+            "Nome:       " + txtNomeProduto.getText());
+        alert.setTitle("Aviso de Exclusão");
+        alert.setHeaderText("Confirma a Exclusão deste Produto?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.NO){
+            return;
+        }
+
+        //recebe todos os dados da tela
+        produto = moveDadosTelaModel();
+        //vamos Excluir
+        try {
+            if(prodDAO.remove(produto)) {
+                mensagem("Produto Excluído com Sucesso",
+                    Alert.AlertType.INFORMATION, "Sucesso");
+                limparCampos();
+                habilitaInclusao();
+                txtCodigoProduto.requestFocus(); 
+            }
+        }catch (SQLException ex) {
+            mensagem("Erro na Exclusão: " + ex.getMessage(),
+                Alert.AlertType.ERROR, "Erro");
+        }
+        catch (Exception ex) {
+            mensagem("Erro Genérico na Exclusão" + ex.getMessage(),
+                Alert.AlertType.ERROR, "Erro");
+        }
     }
 
     @FXML
