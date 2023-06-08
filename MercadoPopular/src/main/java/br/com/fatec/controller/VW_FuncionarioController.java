@@ -93,13 +93,14 @@ public class VW_FuncionarioController implements Initializable {
                 return;
             }
 
-            int codigoFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
+            Integer codigoFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
 
-            if (funcionarioDAO.BuscaID(codigoFuncionario)) {
+            if (funcionarioDAO.BuscaID_N(codigoFuncionario)) {
                 mensagem("Código do fornecedor já existe!", Alert.AlertType.WARNING);
                 txtCodigoFuncionario.clear();
                 return;
             }
+
             moveDadosTelaModel();
 
             funcionarioDAO.insere(funcionario);
@@ -108,10 +109,8 @@ public class VW_FuncionarioController implements Initializable {
 
             mensagem("Dados incluídos com sucesso", Alert.AlertType.INFORMATION);
         } catch (NumberFormatException ex) {
-
             mensagem("Código do fornecedor inválido!", Alert.AlertType.ERROR);
         } catch (SQLException ex) {
-
             mensagem("Erro na inclusão: " + ex.getMessage(), Alert.AlertType.ERROR);
         } catch (Exception ex) {
             mensagem("Erro genérico na inclusão: " + ex.getMessage(), Alert.AlertType.ERROR);
@@ -120,21 +119,68 @@ public class VW_FuncionarioController implements Initializable {
 
     @FXML
     private void btnExcluir_Click(ActionEvent event) {
+        if (!validarCampos()) {
+            mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
+            return;
+        }
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Mensagem ao Usuário");
+        alert.setHeaderText("Aviso de Exclusão");
+        alert.setContentText("Confirma a Exclusão deste Funcionário?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+        funcionario = moveDadosTelaModel();
+        try {
+            if (funcionarioDAO.remove(funcionario)) {
+                mensagem("Dados excluídos com sucesso", Alert.AlertType.CONFIRMATION);
+                limparTextField();
+                txtCodigoFuncionario.requestFocus();
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Exclusão " + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception ex) {
+            mensagem("Erro genérico na exclusão", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void btnAlterar_Click(ActionEvent event) {
+        if(!validarCampos()){
+            mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
+            return; //sai fora do método
+        }
+        
+        funcionario = moveDadosTelaModel();
+        
+        
+        try {
+            if (funcionarioDAO.altera(funcionario)) {
+                mensagem("Dados Alterados com sucesso", Alert.AlertType.INFORMATION);
+                limparTextField();
+                habilitarInclusao();
+                txtCodigoFuncionario.requestFocus();
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na alteração " + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception ex) {
+            mensagem("Erro genérico na alteração " + ex.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) {
         funcionario = new Funcionario();
 
-        funcionario.setCodigoFuncionario(Integer.parseInt(txtCodigoFuncionario.getText()));
+        String codigoFuncionarioText = txtCodigoFuncionario.getText();
+
+        if (codigoFuncionarioText.isEmpty()) {
+            mensagem("Digite um código de funcionário válido!", Alert.AlertType.ERROR);
+            return;
+        }
 
         try {
-
+            funcionario.setCodigoFuncionario(Integer.parseInt(txtCodigoFuncionario.getText()));
             funcionario = funcionarioDAO.buscaID(funcionario);
 
             if (funcionario == null) {
@@ -231,10 +277,21 @@ public class VW_FuncionarioController implements Initializable {
         funcionario.setRg(txtRg.getText());
         funcionario.setCpf(txtCpf.getText());
         funcionario.setSetor(txtSetor.getText());
-        funcionario.setSalario(Double.parseDouble(txtSalario.getText()));
+        String salarioText = txtSalario.getText();
+        salarioText = salarioText.replaceAll("[^0-9.]", "");
+        double salario = Double.parseDouble(salarioText);
+
+        
+        funcionario.setSalario(salario);
 
         return funcionario;
     }
+    
+    
+    
+    
+    
+    
 
     private void moveDadosModelTela(Funcionario v) {
         txtNomeFuncionario.setText(funcionario.getNome());
@@ -268,56 +325,4 @@ public class VW_FuncionarioController implements Initializable {
 
 }
 
-//
-//    private String aplicarMascaraTelefone(String telefone) {
-//        telefone = telefone.replaceAll("[^0-9]", "");
-//
-//        if (telefone.length() == 10) {
-//            return "(" + telefone.substring(0, 2) + ")" + telefone.substring(2, 6) + "-" + telefone.substring(6);
-//        } else if (telefone.length() == 11) {
-//            return "(" + telefone.substring(0, 2) + ")" + telefone.substring(2, 7) + "-" + telefone.substring(7);
-//        } else {
-//            return telefone;
-//        }
-//    }
-//
-//    private String aplicarMascaraRG(String rg) {
-//        rg = rg.replaceAll("[^0-9]", "");
-//
-//        if (rg.length() == 10) {
-//            return rg.substring(0, 2) + "." + rg.substring(2, 5) + "." + rg.substring(5, 8) + "-" + rg.substring(8);
-//        } else {
-//            return rg;
-//        }
-//    }
-//
-//    private String aplicarMascaraCpf(String cpf) {
-//        cpf = cpf.replaceAll("[^0-9]", "");
-//
-//        if (cpf.length() == 11) {
-//            return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
-//        } else {
-//            return cpf;
-//        }
-//    }
-//
-//    public static String formatarDinheiro(double valor) {
-//        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-//        return format.format(valor);
-//    }
-//
-//    private String aplicarMascaraCEP(String cep) {
-//        //04190 000
-//        cep = cep.replaceAll("[^0-9]", "");
-//
-//        if (cep.length() == 8) {
-//            return cep.substring(0, 2) + "." + cep.substring(2, 5) + "-" + cep.substring(5);
-//        } else {
-//            return cep;
-//        }
-//    }
-//
-//    private String removerCaracteresEspeciais(String cep) {
-//        return cep.replaceAll("[^0-9]", "");
-//    }
 
