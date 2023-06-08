@@ -120,9 +120,14 @@ public class VW_ProdutoController implements Initializable {
         produto = new br.com.fatec.model.Produto();
         produto.setCodigoProduto(Integer.parseInt(txtCodigoProduto.getText()));
         produto.setNomeProduto(txtNomeProduto.getText());
+        produto.setPreco(Float.parseFloat(txtPreco.getText()));
         produto.setDescricao(txtDescricao.getText());
         produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-        produto.setPreco(Float.parseFloat(txtPreco.getText()));
+        
+        produto.setValidade(txtValidade.getValue());
+        
+        
+      
         produto.setFornecedor(cbxFornecedor.getValue());
         produto.setCategoria(cbxCategoria.getValue());
         
@@ -190,6 +195,8 @@ public class VW_ProdutoController implements Initializable {
         //vamos inserir
         try {
             if(prodDAO.insere(produto)) {
+
+
                 mensagem("Produto Incluído com Sucesso", 
                         Alert.AlertType.INFORMATION, "Sucesso");
                 limparCampos();

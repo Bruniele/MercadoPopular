@@ -43,8 +43,8 @@ VALUES
 
 
 CREATE TABLE IF NOT EXISTS funcionario(
-	id INT AUTO_INCREMENT UNIQUE,
-	codigoFuncionario INT(30) NOT NULL,
+    id INT AUTO_INCREMENT UNIQUE,
+    codigoFuncionario INT(30) NOT NULL,
     nome VARCHAR(40) NOT NULL, 
     email VARCHAR(45),
     telefone VARCHAR(20), 
@@ -52,11 +52,8 @@ CREATE TABLE IF NOT EXISTS funcionario(
     cpf VARCHAR(20) NOT NULL UNIQUE, 
     setor VARCHAR(40),
     salario DOUBLE,     
-	PRIMARY KEY(codigoFuncionario)
+    PRIMARY KEY(codigoFuncionario)
 )charset = utf8;
-
-select * from funcionario;
-DROP TABLE funcionario;
 
 
 

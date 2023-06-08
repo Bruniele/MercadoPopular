@@ -4,6 +4,8 @@
  */
 package br.com.fatec.model;
 
+import java.time.LocalDate;
+
 /**
  * Para todas as classes MODEL é preciso criar:
  * 1) getters e setters
@@ -18,7 +20,7 @@ public class Produto {
     private float preco;
     private String descricao;
     private int quantidade;
-    public String validade;
+    public LocalDate validade;
     
     //Agregação
     private Fornecedor fornecedor;
@@ -27,7 +29,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int codigoProduto, String nomeProduto, float preco, String descricao, int quantidade, String validade, Fornecedor fornecedor, Categoria categoria) {
+    public Produto(int codigoProduto, String nomeProduto, float preco, String descricao, int quantidade, LocalDate validade, Fornecedor fornecedor, Categoria categoria) {
         this.codigoProduto = codigoProduto;
         this.nomeProduto = nomeProduto;
         this.preco = preco;
@@ -78,11 +80,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public String getValidade() {
+    public LocalDate getValidade() {
         return validade;
     }
 
-    public void setValidade(String validade) {
+    public void setValidade(LocalDate validade) {
         this.validade = validade;
     }
 

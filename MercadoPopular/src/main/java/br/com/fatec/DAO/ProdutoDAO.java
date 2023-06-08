@@ -8,6 +8,7 @@ import br.com.fatec.model.Produto;
 import br.com.fatec.persistencia.Banco;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -42,7 +43,9 @@ public class ProdutoDAO implements DAO<Produto> {
         pst.setFloat(3, dado.getPreco()); //3º interrogacao
         pst.setString(4, dado.getDescricao()); //4º interrogacao
         pst.setInt(5, dado.getQuantidade()); //5º interrogação
-        pst.setString(6, dado.getValidade()); //6º interrogacao
+        LocalDate validade  = dado.getValidade();
+        java.sql.Date sqlDate = java.sql.Date.valueOf(validade);
+        pst.setDate(6, sqlDate); //6º interrogacao
         pst.setInt(7, dado.getFornecedor().getCodigoFornecedor()); //7º interrogação
         pst.setString(8, dado.getFornecedor().getNomeFornecedor()); //8º interrogação
         pst.setInt(9, dado.getCategoria().getCodigoCategoria()); //9º interrogação
