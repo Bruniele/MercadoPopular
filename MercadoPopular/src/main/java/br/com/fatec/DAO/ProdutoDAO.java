@@ -14,6 +14,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -72,6 +76,42 @@ public class ProdutoDAO implements DAO<Produto> {
         
         return inseriu;
     }
+    public static ObservableList<Produto> getDataProduto() {
+         ObservableList<Produto> list = FXCollections.observableArrayList();
+ 
+         
+       
+            
+        try {
+            String sql = "SELECT * FROM produto";
+            Banco.conectar();
+            PreparedStatement pst;
+            pst = Banco.obterConexao().prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            
+            
+            
+            while(rs.next()){
+                list.add(new Produto(
+                rs.getInt("codigoProduto"),
+                rs.getString("nomeProduto"),
+                rs.getFloat("preco"),
+                rs.getInt("quantidade")
+               // rs.getString("nomeCategoria")
+                ));
+               
+            }
+            
+              Banco.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+              return list;
+        }
+    
+    
 
     @Override
     public boolean remove(Produto dado) throws SQLException {
@@ -226,5 +266,6 @@ public class ProdutoDAO implements DAO<Produto> {
         return listagem;
         
     }
+    
     
 }

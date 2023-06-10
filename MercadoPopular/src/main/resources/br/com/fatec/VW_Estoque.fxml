@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="703.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.com.fatec.controller.VW_EstoqueController">
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="703.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VW_EstoqueController">
     <stylesheets>
         <URL value="@/br/com/fatec/css/vw_estoque.css" />
     </stylesheets>
@@ -28,7 +28,7 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Button>
-      <TextField fx:id="txtId" focusTraversable="false" layoutX="16.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="16.0">
+      <TextField fx:id="txtId" focusTraversable="false" layoutX="17.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="17.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -38,34 +38,23 @@
             <Image url="@image/mercadoPopular.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnBuscar" focusTraversable="false" layoutX="535.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnBuscar_Click" prefHeight="50.0" prefWidth="150.0" styleClass="botao" stylesheets="@css/vw_estoque.css" text="Buscar" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Ebrima Bold" size="16.0" />
-         </font>
-      </Button>
-      <TableView layoutY="314.0" prefHeight="301.0" prefWidth="703.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tabela" layoutY="269.0" prefHeight="346.0" prefWidth="703.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn minWidth="20.0" prefWidth="125.0" text="ID" />
-          <TableColumn minWidth="20.0" prefWidth="165.0" text="Nome do Produto" />
-            <TableColumn minWidth="20.0" prefWidth="148.0" text="Preço" />
-            <TableColumn minWidth="20.0" prefWidth="121.0" text="Categoria" />
-            <TableColumn minWidth="20.0" prefWidth="143.0" text="Marca" />
+          <TableColumn fx:id="clmID" minWidth="20.0" prefWidth="125.0" text="ID" />
+          <TableColumn fx:id="clmNomeProduto" minWidth="20.0" prefWidth="258.0" text="Nome do Produto" />
+            <TableColumn fx:id="clmPreco" minWidth="20.0" prefWidth="160.0" text="Preço" />
+            <TableColumn fx:id="clmQtd" minWidth="20.0" prefWidth="159.0" text="Quantidade" />
         </columns>
       </TableView>
-      <ComboBox fx:id="cbxMarca" focusTraversable="false" layoutX="358.0" layoutY="191.0" prefHeight="37.0" prefWidth="329.0" promptText="Marca" styleClass="comboBox" stylesheets="@css/vw_estoque.css" AnchorPane.leftAnchor="358.0" />
-      <TextField fx:id="txtPreco" focusTraversable="false" layoutX="18.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="18.0">
+      <TextField fx:id="txtPreco" focusTraversable="false" layoutX="17.0" layoutY="188.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="17.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNomeProduto" focusTraversable="false" layoutX="16.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="Nome do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtNomeProduto" focusTraversable="false" layoutX="352.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="318.0" promptText="Nome do Produto" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="cbxCategoria" focusTraversable="false" layoutX="358.0" layoutY="135.0" prefHeight="37.0" prefWidth="329.0" promptText="Categoria" styleClass="comboBox" stylesheets="@css/vw_estoque.css" />
    </children>
 </AnchorPane>
