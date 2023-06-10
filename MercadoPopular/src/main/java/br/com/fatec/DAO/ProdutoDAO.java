@@ -7,9 +7,14 @@ package br.com.fatec.DAO;
 import br.com.fatec.model.Produto;
 import br.com.fatec.persistencia.Banco;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -62,6 +67,42 @@ public class ProdutoDAO implements DAO<Produto> {
         
         return inseriu;
     }
+    public static ObservableList<Produto> getDataProduto() {
+         ObservableList<Produto> list = FXCollections.observableArrayList();
+ 
+         
+       
+            
+        try {
+            String sql = "SELECT * FROM produto";
+            Banco.conectar();
+            PreparedStatement pst;
+            pst = Banco.obterConexao().prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            
+            
+            
+            while(rs.next()){
+                list.add(new Produto(
+                rs.getInt("codigoProduto"),
+                rs.getString("nomeProduto"),
+                rs.getFloat("preco"),
+                rs.getInt("quantidade")
+               // rs.getString("nomeCategoria")
+                ));
+               
+            }
+            
+              Banco.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+              return list;
+        }
+    
+    
 
     @Override
     public boolean remove(Produto model) throws SQLException {
@@ -82,5 +123,6 @@ public class ProdutoDAO implements DAO<Produto> {
     public Collection<Produto> lista(String criterio) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
     
 }

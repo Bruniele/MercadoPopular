@@ -39,6 +39,19 @@ public class Produto {
         this.fornecedor = fornecedor;
         this.categoria = categoria;
     }
+
+    public Produto(int codigoProduto, String nomeProduto, float preco,int qtd){
+        
+
+        this.codigoProduto = codigoProduto;
+        this.nomeProduto = nomeProduto;
+        this.preco = preco;
+        this.quantidade = qtd;
+        
+
+    }
+
+ 
     
     public int getCodigoProduto() {
         return codigoProduto;
