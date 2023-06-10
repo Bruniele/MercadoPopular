@@ -90,10 +90,7 @@ public class Funcionario {
     }
 
     
-    
-    
-    
-   
+  
     @Override
     public int hashCode() {
         int hash = 5;

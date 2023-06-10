@@ -20,7 +20,7 @@ public class Produto {
     private float preco;
     private String descricao;
     private int quantidade;
-    public LocalDate validade;
+    private LocalDate validade;
     
     //Agregação
     private Fornecedor fornecedor;

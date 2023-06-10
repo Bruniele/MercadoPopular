@@ -97,6 +97,11 @@
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnVenda" alignment="CENTER" mnemonicParsing="false" onAction="#btnVenda_Click" prefHeight="70.0" prefWidth="160.0" styleClass="menu" stylesheets="@css/vw_menu.css" text="Venda">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
          </top>

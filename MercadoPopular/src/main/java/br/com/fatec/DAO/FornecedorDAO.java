@@ -29,7 +29,7 @@ public class FornecedorDAO implements DAO<Fornecedor> {
 
         //cria o comando SQL
         //as ? representam os dados para serem gravados
-        String sql = "INSERT INTO Fornecedor (codigoFornecedor,nomeFornecedor,email, telefone, marca,cep,logradouro,bairro,localidade,uf) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Fornecedor (codigoFornecedor,nomeFornecedor, site, email, telefone, cep,logradouro,bairro,localidade,uf,numero) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         //cria o preparedStatement
         pst = Banco.obterConexao().prepareStatement(sql);
@@ -37,14 +37,15 @@ public class FornecedorDAO implements DAO<Fornecedor> {
         //colocar os dados no PST 
         pst.setInt(1, dado.getCodigoFornecedor()); //1° interrogação
         pst.setString(2, dado.getNomeFornecedor()); //2° interrogação
-        pst.setString(3, dado.getEmail());
-        pst.setString(4, dado.getTelefone());
-        pst.setString(5, dado.getMarca());
+        pst.setString(3, dado.getSite());
+        pst.setString(4, dado.getEmail());
+        pst.setString(5, dado.getTelefone());
         pst.setString(6, dado.getCep());
         pst.setString(7, dado.getLogradouro());
         pst.setString(8, dado.getBairro());
         pst.setString(9, dado.getLocalidade());
         pst.setString(10, dado.getUf());
+        pst.setString(11, dado.getNumero());
 
         //executar o comando
         if (pst.executeUpdate() > 0) {
@@ -96,28 +97,30 @@ public class FornecedorDAO implements DAO<Fornecedor> {
 
         String sql = "UPDATE fornecedor SET "
                 + "nomeFornecedor = ?, "
+                + "site = ?, "
                 + "email = ?, "
                 + "telefone = ?, "
-                + "marca = ?, "
                 + "cep = ?, "
                 + "logradouro = ?, "
                 + "bairro = ?, "
                 + "localidade = ?, "
-                + "uf = ? "
+                + "uf = ?, "
+                + "numero = ? "
                 + "WHERE codigoFornecedor = ?";
 
         pst = Banco.obterConexao().prepareStatement(sql);
 
-        pst.setInt(10, dado.getCodigoFornecedor());
+        pst.setInt(11, dado.getCodigoFornecedor());
         pst.setString(1, dado.getNomeFornecedor());
-        pst.setString(2, dado.getEmail());
-        pst.setString(3, dado.getTelefone());
-        pst.setString(4, dado.getMarca());
+        pst.setString(2, dado.getSite());
+        pst.setString(3, dado.getEmail());
+        pst.setString(4, dado.getTelefone());
         pst.setString(5, dado.getCep());
         pst.setString(6, dado.getLogradouro());
         pst.setString(7, dado.getBairro());
         pst.setString(8, dado.getLocalidade());
         pst.setString(9, dado.getUf());
+        pst.setString(10, dado.getNumero());
 
         if (pst.executeUpdate() > 0) {
             alterou = true;
@@ -149,14 +152,15 @@ public class FornecedorDAO implements DAO<Fornecedor> {
             fornecedor = new Fornecedor();
             fornecedor.setCodigoFornecedor(rs.getInt("codigoFornecedor"));
             fornecedor.setNomeFornecedor(rs.getString("nomeFornecedor"));
+            fornecedor.setSite(rs.getString("site"));
             fornecedor.setEmail(rs.getString("email"));
             fornecedor.setTelefone(rs.getString("telefone"));
-            fornecedor.setMarcaFornecedor(rs.getString("marca"));
             fornecedor.setCep(rs.getString("cep"));
             fornecedor.setLogradouro(rs.getString("logradouro"));
             fornecedor.setBairro(rs.getString("bairro"));
             fornecedor.setLocalidade(rs.getString("localidade"));
             fornecedor.setUf(rs.getString("uf"));
+            fornecedor.setNumero(rs.getString("numero"));
 
         }
         Banco.desconectar();

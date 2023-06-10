@@ -4,32 +4,32 @@ public class Fornecedor {
 
     private int codigoFornecedor;
     private String nomeFornecedor;
+    private String site;
     private String email;
     private String telefone;
-    private String marca;
     private String cep;
     private String logradouro;
     private String bairro;
     private String localidade;
     private String uf;
+    private String numero;
 
     public Fornecedor() {
     }
 
-    public Fornecedor(int codigoFornecedor, String nomeFornecedor, String email, String telefone,String marca,String cep, String logradouro, String bairro, String localidade, String uf) {
+    public Fornecedor(int codigoFornecedor, String nomeFornecedor, String site, String email, String telefone, String cep, String logradouro, String bairro, String localidade, String uf, String numero) {
         this.codigoFornecedor = codigoFornecedor;
         this.nomeFornecedor = nomeFornecedor;
+        this.site = site;
         this.email = email;
         this.telefone = telefone;
-        this.marca = marca;
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.localidade = localidade;
         this.uf = uf;
+        this.numero = numero;
     }
-    
-    
 
     public int getCodigoFornecedor() {
         return codigoFornecedor;
@@ -47,20 +47,20 @@ public class Fornecedor {
         this.nomeFornecedor = nomeFornecedor;
     }
 
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+    
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMarca(){
-        return marca;
-    }
-    
-    public void setMarcaFornecedor(String marca){
-        this.marca = marca;
     }
     
     public String getTelefone() {
@@ -111,6 +111,14 @@ public class Fornecedor {
         this.uf = uf;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -138,11 +146,5 @@ public class Fornecedor {
         return this.getNomeFornecedor();
     }
 
-    
-    
-    
-
-   
-    
     
 }

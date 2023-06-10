@@ -47,13 +47,67 @@ public class FuncionarioDAO implements DAO<Funcionario> {
     }
 
     @Override
-    public boolean remove(Funcionario model) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean remove(Funcionario dado) throws SQLException {
+        boolean removeu;
+        
+        Banco.conectar();
+        
+        String sql = "DELETE FROM funcionario WHERE codigoFuncionario = ?";
+        
+        pst = Banco.obterConexao().prepareCall(sql);
+        
+        
+        pst.setInt(1, dado.getCodigoFuncionario());
+        
+        if(pst.executeUpdate()>0){
+            removeu = true;
+        }else{
+            removeu = false;
+        }
+        
+        Banco.desconectar();
+        
+        return removeu;
     }
 
     @Override
-    public boolean altera(Funcionario model) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean altera(Funcionario dado) throws SQLException {
+        boolean alterou;
+        
+        Banco.conectar();
+        
+        String sql = "UPDATE funcionario SET "
+                + "nome = ?,"
+                + "email = ?,"
+                + "telefone = ?,"
+                + "rg = ?,"
+                + "cpf = ?,"
+                + "setor = ?,"
+                + "salario = ? "
+                + "WHERE codigoFuncionario = ?";
+        
+        
+        pst = Banco.obterConexao().prepareStatement(sql);
+        
+        pst.setInt(8, dado.getCodigoFuncionario());
+        pst.setString(1, dado.getNome());
+        pst.setString(2, dado.getEmail());
+        pst.setString(3, dado.getTelefone());
+        pst.setString(4, dado.getRg());
+        pst.setString(5, dado.getCpf());
+        pst.setString(6, dado.getSetor());
+        pst.setDouble(7, dado.getSalario());
+        
+        
+        if (pst.executeUpdate() > 0) {
+            alterou = true;
+        } else {
+            alterou = false;
+        }
+
+        Banco.desconectar();
+        return alterou;
+        
     }
 
     @Override
@@ -89,10 +143,10 @@ public class FuncionarioDAO implements DAO<Funcionario> {
         return funcionario;
     }
 
-    public boolean BuscaID(int dado) throws SQLException {
+    public boolean BuscaID_N(Integer dado) throws SQLException {
         boolean result;
 
-        String sql = "SELECT * FROM fornecedor WHERE codigoFuncionario = ?";
+        String sql = "SELECT * FROM funcionario WHERE codigoFuncionario = ?";
 
         Banco.conectar();
 
@@ -101,8 +155,10 @@ public class FuncionarioDAO implements DAO<Funcionario> {
         pst.setInt(1, dado);
 
         rs = pst.executeQuery();
+        
         if (rs.next()) {
-            rs.getString("nome");
+
+            rs.getInt("codigoFuncionario");
             result = true;
         } else {
             result = false;

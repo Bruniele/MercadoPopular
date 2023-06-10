@@ -9,6 +9,7 @@ import br.com.fatec.services.ViacepService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,11 +32,11 @@ public class VW_FornecedorController implements Initializable {
     @FXML
     private TextField txtNomeFornecedor;
     @FXML
+    private TextField txtSite;
+    @FXML
     private TextField txtEmail;
     @FXML
     private TextField txtTelefone;
-    @FXML
-    private TextField txtMarca;
     @FXML
     private TextField txtCep;
     @FXML
@@ -46,6 +47,10 @@ public class VW_FornecedorController implements Initializable {
     private TextField txtCidade;
     @FXML
     private TextField txtUf;
+    @FXML
+    private TextField txtNumero;
+    @FXML
+    private Button btnLimpar;
     @FXML
     private Button btnInserir;
     @FXML
@@ -64,6 +69,7 @@ public class VW_FornecedorController implements Initializable {
         habilitarInclusao();
 
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
+        btnLimpar.setGraphic(new ImageView("/br/com/fatec/icons/iconeLimpar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
@@ -83,6 +89,11 @@ public class VW_FornecedorController implements Initializable {
             alert.setContentText("Erro ao encontrar a pagina");
             alert.show();
         }
+    }
+    
+    @FXML
+    private void btnLimpar_Click(ActionEvent event) {
+        limparTextField();
     }
 
     @FXML
@@ -126,9 +137,13 @@ public class VW_FornecedorController implements Initializable {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Mensagem ao Usuário");
         alert.setHeaderText("Aviso de Exclusão");
-        alert.setContentText("Confirma a Exclusão deste Veículo?");
+        alert.setContentText("Confirma a Exclusão deste Fornecedor?");
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
         
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.NO){
+            return;
+        }
         
         fornecedor = moveDadosTelaModel();
         
@@ -136,6 +151,7 @@ public class VW_FornecedorController implements Initializable {
             if(fornecedorDAO.remove(fornecedor)){
                 mensagem("Dados excluidos com sucesso", Alert.AlertType.INFORMATION);
                 limparTextField();
+                habilitarInclusao();
                 txtCodigoFornecedor.requestFocus();
             }
         }catch(SQLException ex){
@@ -227,18 +243,20 @@ public class VW_FornecedorController implements Initializable {
     private void limparTextField() {
         txtCodigoFornecedor.clear();
         txtNomeFornecedor.clear();
+        txtSite.clear();
         txtEmail.clear();
         txtTelefone.clear();
-        txtMarca.clear();
         txtCep.clear();
         txtLogradouro.clear();
         txtBairro.clear();
         txtCidade.clear();
         txtUf.clear();
+        txtNumero.clear();
         txtCodigoFornecedor.requestFocus();
     }
 
     private void habilitarInclusao() {
+        btnLimpar.setDisable(false);
         btnInserir.setDisable(false);
         btnExcluir.setDisable(true);
         btnAlterar.setDisable(true);
@@ -246,6 +264,7 @@ public class VW_FornecedorController implements Initializable {
 
     private void habilitarAlteracaoExclusao() {
         btnInserir.setDisable(true);
+        btnLimpar.setDisable(false);
         btnExcluir.setDisable(false);
         btnAlterar.setDisable(false);
     }
@@ -259,41 +278,44 @@ public class VW_FornecedorController implements Initializable {
         fornecedor = new Fornecedor();
         fornecedor.setCodigoFornecedor(Integer.parseInt(txtCodigoFornecedor.getText()));
         fornecedor.setNomeFornecedor(txtNomeFornecedor.getText());
+        fornecedor.setSite(txtSite.getText());
         fornecedor.setEmail(txtEmail.getText());
         fornecedor.setTelefone(txtTelefone.getText());
-        fornecedor.setMarcaFornecedor(txtMarca.getText());
         fornecedor.setCep(txtCep.getText());
         fornecedor.setLogradouro(txtLogradouro.getText());
         fornecedor.setBairro(txtBairro.getText());
         fornecedor.setLocalidade(txtCidade.getText());
         fornecedor.setUf(txtUf.getText());
+        fornecedor.setNumero(txtNumero.getText());
 
         return fornecedor;
     }
 
     private void moveDadosModelTela(Fornecedor v) {
         txtNomeFornecedor.setText(fornecedor.getNomeFornecedor());
+        txtSite.setText(fornecedor.getSite());
         txtEmail.setText(fornecedor.getEmail());
         txtTelefone.setText(fornecedor.getTelefone());
-        txtMarca.setText(fornecedor.getMarca());
         txtCep.setText(fornecedor.getCep());
         txtLogradouro.setText(fornecedor.getLogradouro());
         txtBairro.setText(fornecedor.getBairro());
         txtCidade.setText(fornecedor.getLocalidade());
         txtUf.setText(fornecedor.getUf());
+        txtNumero.setText(fornecedor.getNumero());
     }
 
     private boolean validarCampos() {
         if (txtCodigoFornecedor.getText().length() == 0
                 || txtNomeFornecedor.getText().length() == 0
+                || txtSite.getText().length() == 0
                 || txtEmail.getText().length() == 0
                 || txtTelefone.getText().length() == 0
-                || txtMarca.getText().length() == 0
                 || txtCep.getText().length() == 0
                 || txtLogradouro.getText().length() == 0
                 || txtBairro.getText().length() == 0
                 || txtCidade.getText().length() == 0
-                || txtUf.getText().length() == 0) {
+                || txtUf.getText().length() == 0
+                || txtNumero.getText().length() == 0) {
             return false;
         } else {
             return true;
