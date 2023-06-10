@@ -22,6 +22,17 @@ CREATE TABLE if not exists Fornecedor (
     PRIMARY KEY(codigoFornecedor)
 )default charset=utf8;
 
+INSERT INTO Fornecedor 
+(id, codigoFornecedor, nomeFornecedor, site, email, telefone, cep, logradouro, 
+    bairro, localidade, uf, numero) 
+VALUES
+    (default, 1, 'Nestlé', 'nestle.com.br', 'nestle@nestle.com', 
+        '(11)95508-4400', '04730-090', 'Avenida das Nações Unidas', 
+        'Várzea de Baixo', 'São Paulo', 'SP', 17007),
+    (default, 2, 'Oba Hortifruti', 'obahortifruti.com.br', 
+        'obahortifruti@Obahortifruti.com', '(19)97171-6816',  '01227-000', 
+        'Avenida Angélica', 'Santa Cecília', 'São Paulo', 'SP', 635);
+
 CREATE TABLE IF NOT EXISTS Categoria(
 
     id INT AUTO_INCREMENT UNIQUE,
@@ -38,7 +49,7 @@ VALUES
     (default, 2, 'Bebida'),
     (default, 3, 'Açougue'),
     (default, 4, 'Frios'),
-    (default, 5 ,'Padaria'),
+    (default, 5, 'Padaria'),
     (default, 6, 'Congelados'),
     (default, 7, 'Hortifruti');
 
@@ -48,15 +59,25 @@ CREATE TABLE IF NOT EXISTS funcionario(
     codigoFuncionario INT(30) NOT NULL,
     nome VARCHAR(40) NOT NULL, 
     email VARCHAR(45),
-    telefone VARCHAR(20), 
+    telefone VARCHAR(16), 
     rg VARCHAR(20) NOT NULL UNIQUE,
     cpf VARCHAR(20) NOT NULL UNIQUE, 
-    setor VARCHAR(40),
+    setor VARCHAR(60),
     salario DOUBLE,     
     PRIMARY KEY(codigoFuncionario)
 )charset = utf8;
 
-
+INSERT INTO funcionario
+(id, codigoFuncionario, nome, email, telefone, rg, cpf, setor, salario) 
+VALUES
+    (default, 1, 'Marcos Almeida dos Santos', 'marcosdossantos@gmail.com', 
+        '(11)98765-9907', '21.993.945-99', '236.982.922-11', 
+        'Atendente de caixa', '130900'),
+    (default, 2, 'Carlos Azevedo', 'carlosazevedo@gmail.com', '(11)98611-3216', 
+        '44.655.981-02', '322.655.612-55', 'Estoquista', '150275'),
+    (default, 3, 'Roberta Guimarães', 'robertaguimaraes@gmail.com', 
+        '(11)96732-8861', '55.432.336-87', '332.766.900-12', 
+        'Atendente de caixa', '130900');
 
 CREATE TABLE IF NOT EXISTS Produto(
 	
@@ -78,8 +99,12 @@ CREATE TABLE IF NOT EXISTS Produto(
     
 )default charset=utf8;
 
-
-
-
-
+INSERT INTO Produto
+(id, codigoProduto, nomeProduto, preco, descricao, quantidade, validade, 
+    codigoFornecedor, nomeFornecedor, codigoCategoria, nomeCategoria) 
+VALUES
+    (default, 1, 'Maçã', 3.44, 'Maçã', 155, '2023-06-30', 2, 
+        'Oba Hortifruti', 7, 'Hortifruti'),
+    (default, 2, 'KitKat', '3.99', 'Chocolate Nestlé Kit Kat', 232, 
+        '2023-10-15', 1, 'Nestlé', 5, 'Padaria');
 

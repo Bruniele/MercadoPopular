@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,6 +65,7 @@ public class VW_FuncionarioController implements Initializable {
         habilitarInclusao();
 
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
+        btnLimpar.setGraphic(new ImageView("/br/com/fatec/icons/iconeLimpar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
         btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
         btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
@@ -108,6 +110,9 @@ public class VW_FuncionarioController implements Initializable {
             limparTextField();
 
             mensagem("Dados incluídos com sucesso", Alert.AlertType.INFORMATION);
+            
+            txtCodigoFuncionario.requestFocus();
+            
         } catch (NumberFormatException ex) {
             mensagem("Código do fornecedor inválido!", Alert.AlertType.ERROR);
         } catch (SQLException ex) {
@@ -129,12 +134,18 @@ public class VW_FuncionarioController implements Initializable {
         alert.setHeaderText("Aviso de Exclusão");
         alert.setContentText("Confirma a Exclusão deste Funcionário?");
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.NO){
+            return;
+        }
 
         funcionario = moveDadosTelaModel();
         try {
             if (funcionarioDAO.remove(funcionario)) {
                 mensagem("Dados excluídos com sucesso", Alert.AlertType.CONFIRMATION);
                 limparTextField();
+                habilitarInclusao();
                 txtCodigoFuncionario.requestFocus();
             }
         } catch (SQLException ex) {
@@ -207,6 +218,7 @@ public class VW_FuncionarioController implements Initializable {
         txtSetor.clear();
         txtSalario.clear();
         habilitarInclusao();
+        txtCodigoFuncionario.requestFocus();
     }
 
     //CELULAR

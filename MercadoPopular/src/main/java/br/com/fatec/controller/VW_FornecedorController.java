@@ -93,7 +93,19 @@ public class VW_FornecedorController implements Initializable {
     
     @FXML
     private void btnLimpar_Click(ActionEvent event) {
-        limparTextField();
+        txtCodigoFornecedor.clear();
+        txtNomeFornecedor.clear();
+        txtSite.clear();
+        txtEmail.clear();
+        txtTelefone.clear();
+        txtCep.clear();
+        txtLogradouro.clear();
+        txtBairro.clear();
+        txtCidade.clear();
+        txtUf.clear();
+        txtNumero.clear();
+        txtCodigoFornecedor.requestFocus();
+        habilitarInclusao();
     }
 
     @FXML
