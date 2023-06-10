@@ -115,7 +115,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "codigoFuncionario=" + codigoFuncionario + '}';
+        return this.getNome();
     }
 
 }

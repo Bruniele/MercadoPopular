@@ -5,6 +5,7 @@ import br.com.fatec.persistencia.Banco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class FuncionarioDAO implements DAO<Funcionario> {
@@ -170,7 +171,33 @@ public class FuncionarioDAO implements DAO<Funcionario> {
 
     @Override
     public Collection<Funcionario> lista(String criterio) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         Collection<Funcionario> listagem = new ArrayList<>();
+
+            funcionario = null;
+
+            String sql = "SELECT * FROM funcionario ";
+            if (criterio.length() != 0) {
+                sql += "WHERE " + criterio;
+            }
+
+            Banco.conectar();
+
+            pst = Banco.obterConexao().prepareStatement(sql);
+
+            rs = pst.executeQuery();
+
+
+            while(rs.next()){
+                funcionario = new Funcionario();
+                funcionario.setCodigoFuncionario(rs.getInt("codigoFuncionario"));
+                funcionario.setNome(rs.getString("nome"));
+
+                listagem.add(funcionario);
+            }
+            
+            Banco.desconectar();
+
+            return listagem;
     }
 
 }

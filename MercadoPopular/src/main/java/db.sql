@@ -108,3 +108,22 @@ VALUES
     (default, 2, 'KitKat', '3.99', 'Chocolate Nestlé Kit Kat', 232, 
         '2023-10-15', 1, 'Nestlé', 5, 'Padaria');
 
+Create table if not exists Venda(
+    codigoVenda int(20) not null,
+    
+    codigoProduto INT(30) NOT NULL,
+    nomeProduto VARCHAR(100) NOT NULL,
+    preco DECIMAL (10,2) NOT NULL,
+    quantidade INT(30),
+    validade DATE,
+    valorTotal DECIMAL(10,2) NOT NULL,
+    totalRecebido DECIMAL(10,2) NOT NULL,
+    troco DECIMAL(10,2) NOT NULL,
+    codigoCliente INT(30) NOT NULL,
+    nomeCliente VARCHAR(100) NOT NULL,
+    codigoFuncionario INT(30) NOT NULL,
+    nomeFuncionario VARCHAR(40) NOT NULL, 
+	
+    PRIMARY KEY(codigoVenda),
+    FOREIGN KEY (codigoFuncionario) REFERENCES funcionario (codigoFuncionario)
+);

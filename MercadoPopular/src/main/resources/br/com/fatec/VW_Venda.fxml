@@ -37,7 +37,7 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCodigoProduto" layoutX="18.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtCodigoProduto" layoutX="18.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onCodProdKeyReleased" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -49,7 +49,7 @@
       </Text>
       <TextField fx:id="txtNomeProduto" disable="true" layoutX="254.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="381.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
-            <Font name="Ebrima" size="16.0" />
+            <Font name="Ebrima Bold" size="18.0" />
          </font>
       </TextField>
       <Text layoutX="664.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço">
@@ -59,7 +59,7 @@
       </Text>
       <TextField fx:id="txtPreco" disable="true" layoutX="663.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="26.0">
          <font>
-            <Font name="Ebrima" size="16.0" />
+            <Font name="Ebrima Bold" size="18.0" />
          </font>
       </TextField>
       <Text layoutX="21.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade">
@@ -67,7 +67,7 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtQuantidade" layoutX="20.0" layoutY="271.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="308.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtQuantidade" layoutX="20.0" layoutY="271.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onQtdKeyReleased" prefHeight="40.0" prefWidth="308.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -83,9 +83,9 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtValorTotal" layoutX="20.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="308.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtValorTotal" disable="true" layoutX="20.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="308.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
-            <Font name="Ebrima" size="16.0" />
+            <Font name="Ebrima Bold" size="18.0" />
          </font>
       </TextField>
       <Text layoutX="359.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Recebido">
@@ -93,7 +93,7 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtTotalRecebido" layoutX="358.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtTotalRecebido" layoutX="358.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onTotalKeyReleased" prefHeight="40.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
@@ -103,9 +103,9 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtTroco" layoutX="616.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="txtTroco" disable="true" layoutX="616.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;">
          <font>
-            <Font name="Ebrima" size="16.0" />
+            <Font name="Ebrima Bold" size="18.0" />
          </font>
       </TextField>
       <Text layoutX="21.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Cliente">
