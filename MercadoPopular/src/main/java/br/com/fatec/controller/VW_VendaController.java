@@ -45,6 +45,8 @@ public class VW_VendaController implements Initializable {
     @FXML
     private Button btnVoltar;
     @FXML
+    private TextField txtCodigoVenda;
+    @FXML
     private TextField txtCodigoProduto;
     @FXML
     private TextField txtNomeProduto;
@@ -72,12 +74,6 @@ public class VW_VendaController implements Initializable {
     private Button btnLimpar;
     @FXML
     private Button btnInserir;
-    @FXML
-    private Button btnExcluir;
-    @FXML
-    private Button btnAlterar;
-    @FXML
-    private Button btnPesquisar;
 
     //variaveis auxiliares
     private Venda venda;
@@ -108,9 +104,6 @@ public class VW_VendaController implements Initializable {
         btnVoltar.setGraphic(new ImageView("/br/com/fatec/icons/iconeVoltar.png"));
         btnLimpar.setGraphic(new ImageView("/br/com/fatec/icons/iconeLimpar.png"));
         btnInserir.setGraphic(new ImageView("/br/com/fatec/icons/iconeInserir.png"));
-        btnExcluir.setGraphic(new ImageView("/br/com/fatec/icons/iconeExcluir.png"));
-        btnAlterar.setGraphic(new ImageView("/br/com/fatec/icons/iconeAlterar.png"));
-        btnPesquisar.setGraphic(new ImageView("/br/com/fatec/icons/iconePesquisar.png"));
 
         preencheCombo();
 
@@ -151,6 +144,7 @@ public class VW_VendaController implements Initializable {
     @FXML
     private void btnLimpar_Click(ActionEvent event) {
         // Limpar campos de texto
+        txtCodigoVenda.clear();
         txtCodigoProduto.clear();
         txtNomeProduto.clear();
         txtPreco.clear();
@@ -167,23 +161,39 @@ public class VW_VendaController implements Initializable {
         cbxCliente.setValue(null);
         cbxFuncionario.getSelectionModel().clearSelection();
         cbxFuncionario.setValue(null);
+                
+        habilitaInclusao();
+        txtCodigoVenda.requestFocus();
     }
 
     @FXML
     private void btnInserir_Click(ActionEvent event) {
+        if(!validarCampos()) {
+            mensagem("Preencha todos os campos", 
+                    Alert.AlertType.WARNING, "Aviso");
+            return; //sai fora do método
+        }        
+        
+        //recebe todos os dados da tela
+        venda = moveDadosTelaModel();
+
+        //vamos inserir
+        try {
+            if(vendDAO.insere(venda)) {
+                mensagem("Venda Incluída com Sucesso", 
+                        Alert.AlertType.INFORMATION, "Sucesso");
+                limparCampos();
+                txtCodigoVenda.requestFocus();
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Inclusão: " + ex.getMessage(),
+                    Alert.AlertType.ERROR, "Erro");
+        } catch (Exception ex) {
+            mensagem("Erro Genérico na Inclusão" + ex.getMessage(),
+                    Alert.AlertType.ERROR, "Erro");
+        }
     }
 
-    @FXML
-    private void btnExcluir_Click(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnAlterar_Click(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnPesquisar_Click(ActionEvent event) {
-    }
 
     @FXML
     private void onCodProdKeyReleased(KeyEvent event) {
@@ -217,7 +227,6 @@ public class VW_VendaController implements Initializable {
                         Alert.AlertType.ERROR, "Erro");
             } else {
                 moveDadosModelTela(produto);
-                habilitaAlteracaoExclusao();
             }
         } catch (SQLException ex) {
             mensagem("Erro na Pesquisa: " + ex.getMessage(),
@@ -266,7 +275,6 @@ public class VW_VendaController implements Initializable {
                 } else {
                     // Mostrar na tela
                     valorTotal(produto, qtdDigitada);
-                    habilitaAlteracaoExclusao();
                 }
             }
         } catch (SQLException ex) {
@@ -329,19 +337,80 @@ public class VW_VendaController implements Initializable {
         alerta.getButtonTypes().setAll(btnOk);
         alerta.showAndWait();
     }
+    
+    private boolean validarCampos() {
+        if(txtCodigoVenda.getText().length() == 0 ||
+            txtCodigoProduto.getText().length() == 0 ||
+            txtNomeProduto.getText().length() == 0 ||
+            txtPreco.getText().length() == 0 ||
+            txtQuantidade.getText().length() == 0 ||
+            txtValidade.getValue() == null ||
+            txtValorTotal.getText().length() == 0 ||
+            txtTotalRecebido.getText().length() == 0 ||
+            txtTroco.getText().length() == 0 ||
+            txtCodigoCliente.getText().length() == 0 ||
+            txtCodigoFuncionario.getText().length() == 0 ||
+            cbxCliente.getValue() == null ||
+            cbxFuncionario.getValue() == null ||
+            cbxFuncionario.getValue() == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    private void limparCampos() {
+        // Limpar campos de texto
+        txtCodigoVenda.clear();
+        txtCodigoProduto.clear();
+        txtNomeProduto.clear();
+        txtPreco.clear();
+        txtQuantidade.clear();
+        txtValidade.getEditor().clear();
+        txtValorTotal.clear();
+        txtTotalRecebido.clear();
+        txtTroco.clear();
+        txtCodigoCliente.clear();
+        txtCodigoFuncionario.clear();
+
+        // Reinicializar ComboBoxes
+        cbxCliente.getSelectionModel().clearSelection();
+        cbxCliente.setValue(null);
+        cbxFuncionario.getSelectionModel().clearSelection();
+        cbxFuncionario.setValue(null);
+        
+        txtCodigoVenda.requestFocus();
+    }
+    
+    private Venda moveDadosTelaModel() {
+        venda = new Venda();
+        venda.setCodigoVenda(Integer.parseInt(txtCodigoVenda.getText()));
+        venda.setCodigoProduto(Integer.parseInt(txtCodigoFuncionario.getText()));
+        venda.setNomeProduto(txtNomeProduto.getText());
+        venda.setPreco(Float.parseFloat(txtPreco.getText()));
+        venda.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+        venda.setValidade(txtValidade.getValue());
+       
+        venda.setValorTotal(Float.parseFloat(txtValorTotal.getText()));
+        venda.setTotalRecebido(Float.parseFloat(txtTotalRecebido.getText()));
+        String trocoText = txtTroco.getText();
+        trocoText = trocoText.replaceAll("[^0-9.]", "");
+        float troco = Float.parseFloat(trocoText);
+        venda.setTroco(troco);
+        venda.setCliente(cbxCliente.getValue());
+        venda.setFuncionario(cbxFuncionario.getValue());
+        
+        return venda;
+    }
 
     private void habilitaInclusao() {
         btnLimpar.setDisable(false);
         btnInserir.setDisable(false);
-        btnAlterar.setDisable(true);
-        btnExcluir.setDisable(true);
     }
 
     private void habilitaAlteracaoExclusao() {
         btnInserir.setDisable(true);
         btnLimpar.setDisable(false);
-        btnAlterar.setDisable(false);
-        btnExcluir.setDisable(false);
     }
 
     private void moveDadosModelTela(Produto p) {

@@ -27,10 +27,10 @@ INSERT INTO Fornecedor
     bairro, localidade, uf, numero) 
 VALUES
     (default, 1, 'Nestlé', 'nestle.com.br', 'nestle@nestle.com', 
-        '(11)95508-4400', '04730-090', 'Avenida das Nações Unidas', 
+        '(11)95508-4400', '04730090', 'Avenida das Nações Unidas', 
         'Várzea de Baixo', 'São Paulo', 'SP', '17007'),
     (default, 2, 'Oba Hortifruti', 'obahortifruti.com.br', 
-        'obahortifruti@Obahortifruti.com', '(19)97171-6816', '01227-000', 
+        'obahortifruti@Obahortifruti.com', '(19)97171-6816', '01227000', 
         'Avenida Angélica', 'Santa Cecília', 'São Paulo', 'SP', '635');
 
 CREATE TABLE IF NOT EXISTS Categoria(
