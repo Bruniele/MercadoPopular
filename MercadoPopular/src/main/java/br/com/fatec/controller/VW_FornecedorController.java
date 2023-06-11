@@ -90,7 +90,7 @@ public class VW_FornecedorController implements Initializable {
             alert.show();
         }
     }
-    
+
     @FXML
     private void btnLimpar_Click(ActionEvent event) {
         txtCodigoFornecedor.clear();
@@ -141,65 +141,71 @@ public class VW_FornecedorController implements Initializable {
 
     @FXML
     private void btnExcluir_Click(ActionEvent event) {
-        if(!validarCampos()){
+        if (!validarCampos()) {
             mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
             return;
         }
-        
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Mensagem ao Usuário");
         alert.setHeaderText("Aviso de Exclusão");
         alert.setContentText("Confirma a Exclusão deste Fornecedor?");
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-        
+
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.NO){
+        if (result.get() == ButtonType.NO) {
             return;
         }
-        
+
         fornecedor = moveDadosTelaModel();
-        
-        try{
-            if(fornecedorDAO.remove(fornecedor)){
+
+        try {
+            if (fornecedorDAO.remove(fornecedor)) {
                 mensagem("Dados excluidos com sucesso", Alert.AlertType.INFORMATION);
                 limparTextField();
                 habilitarInclusao();
                 txtCodigoFornecedor.requestFocus();
             }
-        }catch(SQLException ex){
-            mensagem("Erro na Esclusão"+ex.getMessage(), Alert.AlertType.ERROR);
-        }catch(Exception ex){
-            mensagem("Erro genérico na exclusão",Alert.AlertType.ERROR);
+        } catch (SQLException ex) {
+            mensagem("Erro na Esclusão" + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception ex) {
+            mensagem("Erro genérico na exclusão", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void btnAlterar_Click(ActionEvent event) {
-         
-        if(!validarCampos()) {
+
+        if (!validarCampos()) {
             mensagem("Preencher todos os campos", Alert.AlertType.INFORMATION);
             return; //sai fora do método
         }
-        
-        
+
         fornecedor = moveDadosTelaModel();
-        
-        try{
-            if(fornecedorDAO.altera(fornecedor)){
+
+        try {
+            if (fornecedorDAO.altera(fornecedor)) {
                 mensagem("Dados Alterados com sucesso", Alert.AlertType.INFORMATION);
                 limparTextField();
                 habilitarInclusao();
-                txtCodigoFornecedor.requestFocus(); 
+                txtCodigoFornecedor.requestFocus();
             }
-        }catch(SQLException ex){
-            mensagem("Erro na alteração "+ ex.getMessage(),Alert.AlertType.ERROR);
-        }catch(Exception ex){
-            mensagem("Erro genérico na alteração "+ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (SQLException ex) {
+            mensagem("Erro na alteração " + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception ex) {
+            mensagem("Erro genérico na alteração " + ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) throws SQLException {
+        String codigoFornecedorText = txtCodigoFornecedor.getText();
+
+        if (codigoFornecedorText.isEmpty()) {
+            mensagem("O campo de código do fornecedor está vazio!", Alert.AlertType.WARNING);
+            return;
+        }
+
         fornecedor = new Fornecedor();
 
         fornecedor.setCodigoFornecedor(Integer.parseInt(txtCodigoFornecedor.getText()));
