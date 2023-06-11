@@ -143,8 +143,44 @@ public class ProdutoDAO implements DAO<Produto> {
     }
 
     @Override
-    public boolean altera(Produto model) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean altera(Produto dado) throws SQLException {
+        boolean alterou;
+        
+        //conectar com o banco
+        Banco.conectar();
+        
+        //cria o comando SQL
+        //as ? representam os dados para serem alterados
+        String sql = "UPDATE Produto SET nomeProduto = ?, preco = ?, "
+                   + "descricao = ?, quantidade = ?, validade = ?, "
+                   + "codigoFornecedor = ?, codigoCategoria = ?"
+                   + " WHERE codigoProduto = ?";
+        
+        //cria o preparedStatement
+        pst = Banco.obterConexao().prepareStatement(sql);
+        
+        //colocar os dados no PST
+        pst.setString(1, dado.getNomeProduto());  //1º interrogação
+        pst.setFloat(2, dado.getPreco()); //2º interrogação
+        pst.setString(3, dado.getDescricao()); //3º interrogação
+        pst.setInt(4, dado.getQuantidade());  //4º interrogação
+        LocalDate validade  = dado.getValidade();
+        java.sql.Date sqlDate = java.sql.Date.valueOf(validade);
+        pst.setDate(5,sqlDate);  //5º interrogação
+        pst.setInt(6, dado.getFornecedor().getCodigoFornecedor()); //6º interrogação
+        pst.setInt(7, dado.getCategoria().getCodigoCategoria()); //7º interrogação
+        pst.setInt(8, dado.getCodigoProduto()); //8º interrogação
+        
+        //executar o comando
+        if(pst.executeUpdate() > 0)
+            alterou = true; //tudo certo com a inserção
+        else
+            alterou = false; //ocorreu um erro na inserção
+        
+        //fecha a conexao
+        Banco.desconectar();
+        
+        return alterou;
     }
 
     @Override

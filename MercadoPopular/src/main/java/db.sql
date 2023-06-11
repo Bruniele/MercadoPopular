@@ -28,10 +28,10 @@ INSERT INTO Fornecedor
 VALUES
     (default, 1, 'Nestlé', 'nestle.com.br', 'nestle@nestle.com', 
         '(11)95508-4400', '04730-090', 'Avenida das Nações Unidas', 
-        'Várzea de Baixo', 'São Paulo', 'SP', 17007),
+        'Várzea de Baixo', 'São Paulo', 'SP', '17007'),
     (default, 2, 'Oba Hortifruti', 'obahortifruti.com.br', 
-        'obahortifruti@Obahortifruti.com', '(19)97171-6816',  '01227-000', 
-        'Avenida Angélica', 'Santa Cecília', 'São Paulo', 'SP', 635);
+        'obahortifruti@Obahortifruti.com', '(19)97171-6816', '01227-000', 
+        'Avenida Angélica', 'Santa Cecília', 'São Paulo', 'SP', '635');
 
 CREATE TABLE IF NOT EXISTS Categoria(
 
@@ -72,12 +72,12 @@ INSERT INTO funcionario
 VALUES
     (default, 1, 'Marcos Almeida dos Santos', 'marcosdossantos@gmail.com', 
         '(11)98765-9907', '21.993.945-99', '236.982.922-11', 
-        'Atendente de caixa', '130900'),
+        'Atendente de caixa', 130900),
     (default, 2, 'Carlos Azevedo', 'carlosazevedo@gmail.com', '(11)98611-3216', 
-        '44.655.981-02', '322.655.612-55', 'Estoquista', '150275'),
+        '44.655.981-02', '322.655.612-55', 'Estoquista', 150275),
     (default, 3, 'Roberta Guimarães', 'robertaguimaraes@gmail.com', 
         '(11)96732-8861', '55.432.336-87', '332.766.900-12', 
-        'Atendente de caixa', '130900');
+        'Atendente de caixa', 130900);
 
 CREATE TABLE IF NOT EXISTS Produto(
 	
@@ -105,7 +105,7 @@ INSERT INTO Produto
 VALUES
     (default, 1, 'Maçã', 3.44, 'Maçã', 155, '2023-06-30', 2, 
         'Oba Hortifruti', 7, 'Hortifruti'),
-    (default, 2, 'KitKat', '3.99', 'Chocolate Nestlé Kit Kat', 232, 
+    (default, 2, 'Kit Kat', 3.99, 'Chocolate Nestlé Kit Kat', 232, 
         '2023-10-15', 1, 'Nestlé', 5, 'Padaria');
 
 Create table if not exists Venda(

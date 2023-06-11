@@ -4,6 +4,7 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.Formatter.TextFieldFormatter;
 import br.com.fatec.model.Cliente;
 import br.com.fatec.Menu;
 import java.net.URL;
@@ -19,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -76,10 +78,10 @@ public class VW_ClienteController implements Initializable {
         //colocar a coleção dentro da comboBox
         cbxCliente.setItems(clientes);
         
-        clientes.add(new Cliente(1, "Maria Teixeira de Souza", 40, "11987564352", 
-            "54672178094", "mariateixeira@gmail.com"));
-        clientes.add(new Cliente(2, "João Siqueira Matos", 55, "11987542318", 
-            "25670098341", "joaosiqueiramatos@gmail.com"));
+        clientes.add(new Cliente(1, "Maria Teixeira de Souza", 40, "119.875.643-52", 
+            "(11)97217-8094", "mariateixeira@gmail.com"));
+        clientes.add(new Cliente(2, "João Siqueira Matos", 55, "155.018.423-18", 
+            "(11)97009-8341", "joaosiqueiramatos@gmail.com"));
         
         //Programa o evento de seleção na comboBox
         eventoChangeValueCombo();
@@ -185,8 +187,8 @@ public class VW_ClienteController implements Initializable {
                 "Nome:       " + cbxCliente.getSelectionModel().getSelectedItem().getNome());
             ButtonType btnSim = new ButtonType("Sim");
             ButtonType btnNao = new ButtonType("Não");
-            alertaExcluir.setTitle("Confirmar Exclusão");
-            alertaExcluir.setHeaderText("Você realmente deseja excluir o cliente");
+            alertaExcluir.setTitle("Aviso de Exclusão");
+            alertaExcluir.setHeaderText("Confirma a Exclusão deste Cliente?");
             alertaExcluir.getButtonTypes().setAll(btnSim, btnNao);
             alertaExcluir.showAndWait().ifPresent(b -> {
                 if (b == btnSim) {
@@ -300,6 +302,24 @@ public class VW_ClienteController implements Initializable {
         txtCpf.setText(c.getCpf());
         txtTelefone.setText(c.getTelefone());
         txtEmail.setText(c.getEmail());
+    }
+
+    @FXML
+    private void onCpfKeyReleased(KeyEvent event) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("###.###.###-##");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(txtCpf);
+        tff.formatter();
+    }
+
+    @FXML
+    private void onCelularKeyReleased(KeyEvent event) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("(##)#####-####");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(txtTelefone);
+        tff.formatter();
     }
     
 }

@@ -84,7 +84,7 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <DatePicker fx:id="txtValidade" layoutX="354.0" layoutY="352.0" prefHeight="37.0" prefWidth="492.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" />
+      <DatePicker fx:id="txtValidade" layoutX="354.0" layoutY="352.0" prefHeight="37.0" prefWidth="492.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 3px;" />
       <Text layoutX="21.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Fornecedor">
          <font>
             <Font name="Ebrima" size="18.0" />

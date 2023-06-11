@@ -33,22 +33,22 @@
             <Image url="@image/mercadoPopular.png" />
          </image>
       </ImageView>
-      <Text layoutX="20.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Fornecedor">
+      <Text layoutX="20.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código">
          <font>
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCodigoFornecedor" layoutX="20.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
+      <TextField fx:id="txtCodigoFornecedor" layoutX="20.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>
       </TextField>
-      <Text layoutX="447.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Fornecedor">
+      <Text layoutX="248.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
          <font>
             <Font name="Ebrima" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtNomeFornecedor" layoutX="447.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
+      <TextField fx:id="txtNomeFornecedor" layoutX="447.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="599.0" style="-fx-background-color: transparent; -fx-border-color: #FFCC00; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Ebrima" size="16.0" />
          </font>

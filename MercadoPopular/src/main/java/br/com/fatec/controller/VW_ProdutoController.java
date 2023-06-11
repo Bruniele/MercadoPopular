@@ -137,10 +137,10 @@ public class VW_ProdutoController implements Initializable {
     */
     private void moveDadosModelTela(Produto p) {
         txtCodigoProduto.setText(Integer.toString(p.getCodigoProduto()));
-        txtNomeProduto.setText((p.getNomeProduto()));
+        txtNomeProduto.setText(p.getNomeProduto());
         txtPreco.setText(Float.toString(p.getPreco()));
-        txtDescricao.setText((p.getDescricao()));
-        txtValidade.setValue((p.getValidade()));
+        txtDescricao.setText(p.getDescricao());
+        txtValidade.setValue(p.getValidade());
         txtQuantidade.setText(Integer.toString(p.getQuantidade()));
         txtCodigoFornecedor.setText(Integer.toString(
                     p.getFornecedor().getCodigoFornecedor()));
@@ -194,7 +194,18 @@ public class VW_ProdutoController implements Initializable {
     
     @FXML
     private void btnLimpar_Click(ActionEvent event) {
-        limparCampos();
+        txtCodigoProduto.setText("");
+        txtNomeProduto.setText("");
+        txtPreco.setText("");
+        txtDescricao.setText("");
+        txtQuantidade.setText("");
+        txtValidade.setValue(null);
+        txtCodigoFornecedor.setText("");
+        cbxFornecedor.getSelectionModel().clearSelection();
+        txtCodigoCategoria.setText("");
+        cbxCategoria.getSelectionModel().clearSelection();
+        txtCodigoProduto.requestFocus();
+        habilitaInclusao();
     }
 
     @FXML
@@ -267,6 +278,30 @@ public class VW_ProdutoController implements Initializable {
 
     @FXML
     private void btnAlterar_Click(ActionEvent event) {
+        if(!validarCampos()) {
+            mensagem("Preencher todos os campos", Alert.AlertType.WARNING, "Alerta");
+            return; //sai fora do método
+        }
+        
+        //recebe todos os dados da tela
+        produto = moveDadosTelaModel();
+        
+        //vamos alterar
+        try {
+            if(prodDAO.altera(produto)) {
+                mensagem("Produto Alterado com Sucesso", 
+                        Alert.AlertType.INFORMATION, "Sucesso");
+                limparCampos();
+                habilitaInclusao();
+                txtCodigoProduto.requestFocus();
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Alteração: " + ex.getMessage(),
+                    Alert.AlertType.ERROR, "Erro");
+        } catch (Exception ex) {
+            mensagem("Erro Genérico na Alteração" + ex.getMessage(),
+                    Alert.AlertType.ERROR, "Erro");
+        }
     }
 
     @FXML
