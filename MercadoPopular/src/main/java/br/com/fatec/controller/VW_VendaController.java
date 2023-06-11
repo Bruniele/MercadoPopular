@@ -95,6 +95,10 @@ public class VW_VendaController implements Initializable {
     //auxiliar para a comboBox do Fornecedor
     private ObservableList<Funcionario> funcionarios
             = FXCollections.observableArrayList();
+    
+    //auxiliar para a comboBox do Cliente
+    private ObservableList<Cliente> clientes =  
+        FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -112,12 +116,23 @@ public class VW_VendaController implements Initializable {
 
         //colocar a coleção do Funcionário na comboBox
         cbxFuncionario.setItems(funcionarios);
-
+        
+        //colocar a coleção do Cliente dentro da comboBox
+        cbxCliente.setItems(clientes);
+        
+        clientes.add(new Cliente(1, "Maria Teixeira de Souza", 40, "119.875.643-52", 
+            "(11)97217-8094", "mariateixeira@gmail.com"));
+        clientes.add(new Cliente(2, "João Siqueira Matos", 55, "155.018.423-18", 
+            "(11)97009-8341", "joaosiqueiramatos@gmail.com"));
+        
         habilitaInclusao();
         configuraLostFocusFuncionario();
         configuraChangeValueComboFuncionario();
-    }
-
+        configuraLostFocusCliente();
+        eventoChangeValueComboCliente();
+        
+    } 
+    
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
         Menu open = new Menu();
@@ -334,6 +349,20 @@ public class VW_VendaController implements Initializable {
         txtPreco.setText(Float.toString(p.getPreco()));
         txtValidade.setValue((p.getValidade()));
     }
+    
+    private void moveDadosModelTelaCliente(Cliente c) {
+        txtCodigoCliente.setText(Integer.toString(c.getCodigoCliente()));
+        
+    }
+    
+    private Cliente moveDadosTelaModelCliente() {
+        cliente = new Cliente();
+        cliente.setCodigoCliente(Integer.parseInt(txtCodigoCliente.getText()));
+        cliente.setNome(cbxCliente.getValue().getNome());
+
+
+        return cliente;
+    }
 
     private void valorTotal(Produto p, int qtdDigitada) {
         int qtd = Integer.parseInt(txtQuantidade.getText());
@@ -376,5 +405,30 @@ public class VW_VendaController implements Initializable {
             }
         });
     }
+    
+    private void configuraLostFocusCliente() {
+        txtCodigoCliente.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable,
+                    Boolean oldValue, Boolean newValue) {
+                if (!newValue) {
+                    if (txtCodigoCliente.getText().length() == 0) {
+                        cbxCliente.getSelectionModel().clearSelection();
+                    } else {
+                        cliente = new Cliente();
+                        cliente.setCodigoCliente(Integer.parseInt(txtCodigoCliente.getText()));
+                        cbxCliente.getSelectionModel().select(cliente);
+                    }
+                }
+            }
+        });
+    }
+    
+    private void eventoChangeValueComboCliente() {
+        cbxCliente.valueProperty().addListener((ov, velho, novo) -> {
+            if(novo == null) return;
+            moveDadosModelTelaCliente(novo);
+        });
+    }  
 
 }
