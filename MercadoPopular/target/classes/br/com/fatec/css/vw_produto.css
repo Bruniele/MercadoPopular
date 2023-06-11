@@ -44,16 +44,16 @@
   -fx-primary-color: #FFBF30;
   -fx-secondary-color: #FFCC00;
   -fx-light-grey-color: #d1d1d1;
-  /*Set focus color*/
+  /*Definir cor de foco*/
   -fx-focus-color: -fx-secondary-color;
-  /*Increase font size*/
+  /*Aumentar o tamanho da fonte*/
   -fx-font-size: 1.2em;
   -fx-text-fill: black;
   /*-fx-font-weight: bold;*/
 }
 
 /*-----------------------------------------
-Customize the right button background color
+Personaliza a cor de fundo do botão direito
 -------------------------------------------*/
 .date-picker .arrow-button {
   -fx-background-color: -fx-primary-color;
@@ -69,7 +69,7 @@ Customize the right button background color
 }
  
 /*-----------------------------------------
-Customize popup content
+Personaliza o conteúdo pop-up
 -------------------------------------------*/
 .date-picker .cell {
   -fx-background-color: white;
@@ -85,7 +85,7 @@ Customize popup content
 }
  
 /*-----------------------------------------
-Customize the selected cell
+Personalize a célula selecionada
 -------------------------------------------*/
 .date-picker .selected {
   -fx-background-color: -fx-primary-color;
@@ -113,7 +113,7 @@ Customize the selected cell
 }
  
 /*-----------------------------------------
-Customize left and right arrow
+Personaliza a seta para a esquerda e para a direita
 -------------------------------------------*/
 .date-picker-popup .spinner .button .left-arrow,
 .date-picker-popup .spinner .button .right-arrow {

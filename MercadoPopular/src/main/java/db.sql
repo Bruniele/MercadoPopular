@@ -105,8 +105,10 @@ INSERT INTO Produto
 VALUES
     (default, 1, 'Maçã', 3.44, 'Maçã', 155, '2023-06-30', 2, 
         'Oba Hortifruti', 7, 'Hortifruti'),
-    (default, 2, 'Kit Kat', 3.99, 'Chocolate Nestlé Kit Kat', 232, 
-        '2023-10-15', 1, 'Nestlé', 5, 'Padaria');
+    (default, 2, 'Chocolate KitKat', 3.99, 'Chocolate Nestlé KitKat', 232, 
+        '2023-10-15', 1, 'Nestlé', 5, 'Padaria'),
+    (default, 3, 'Iogurte de Morango', 3.29, 'Iogurte Nestlé de Morango', 55, 
+        '2023-08-02', 1, 'Nestlé', 4, 'Frios');
 
 Create table if not exists Venda(
     codigoVenda int(20) not null,
